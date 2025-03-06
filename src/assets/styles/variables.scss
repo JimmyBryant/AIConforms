@@ -1,0 +1,126 @@
+
+// ==================== 颜色体系 ====================
+// 主品牌色
+$project-color-primary: #2B6EFD !default;         // 主按钮/重要元素
+$project-color-primary-hover: #1E54D6 !default;   // 主按钮悬停色
+$project-color-success: #34C759 !default;         // 成功状态
+$project-color-warning: #FFCC00 !default;        // 警告状态
+$project-color-danger: #FF3B30 !default;         // 错误状态
+$project-color-info: #A8A8A8 !default;           // 辅助信息
+
+// 中性色
+$project-color-white: #FFFFFF !default;           // 纯白
+$project-color-black: #000000 !default;           // 纯黑
+$project-color-text-primary: #1A1D1F !default;    // 主标题文字
+$project-color-text-regular: #4F4F4F !default;    // 正文文字
+$project-color-text-secondary: #6F767E !default; // 辅助文字
+$project-color-text-placeholder: #C0C4CC !default; // 输入框占位符
+
+// 背景色
+
+// ==================== 自定义背景色变量 ====================
+$project-background-color-base: #F8FAFC !default; // 新增定义
+$project-background-color-light: #FFFFFF !default;
+$project-background-color-dark: #1A1D1F !default;
+
+// ==================== 其他保持原有变量 ====================
+// 边框
+$project-border-color-base: #EFEFEF !default;     // 常规边框
+$project-border-color-light: #F2F2F2 !default;     // 浅色边框
+
+// 统计数字
+$project-stat-number-color: #2B6EFD !default;     // 数据统计数字颜色
+
+// ==================== 字体体系 ====================
+$project-font-family-base: 'Inter', system-ui, sans-serif !default;
+$project-font-family-monospace: 'SFMono-Regular', Consolas, monospace !default;
+
+// 字号阶梯 (Desktop First)
+$project-font-size-hero-title: 48px !default;     // 大标题
+$project-font-size-extra-large: 24px !default;    // 主标题
+$project-font-size-large: 18px !default;         // 副标题
+$project-font-size-medium: 16px !default;        // 正文
+$project-font-size-base: 14px !default;          // 常规内容
+$project-font-size-small: 12px !default;         // 辅助文字
+
+// ==================== 字体体系补充 ====================
+// 大标题字号系统
+$project-font-size-hero-title: 48px !default;       // 主标题 (如: Third-Party Risk Management)
+$project-font-size-hero-subtitle: 24px !default;   // 新增：副标题字号 (如: Identify and mitigate vendor risks)
+$project-font-size-hero-cta: 18px !default;        // CTA 按钮文字
+
+// 响应式字体（移动端适配）
+$project-font-size-hero-title-md: 36px !default;    // 中屏幕主标题
+$project-font-size-hero-subtitle-md: 20px !default; // 中屏幕副标题
+
+// ==================== 修改后的字体部分 ====================
+// 字号阶梯 (Desktop First)
+$project-font-size-hero-title: 48px !default;
+$project-font-size-hero-subtitle: 24px !default;     // 已在此处添加
+$project-font-size-extra-large: 24px !default;
+$project-font-size-large: 18px !default;
+$project-font-size-medium: 16px !default;
+$project-font-size-base: 14px !default;
+$project-font-size-small: 12px !default;
+
+// 字重
+$project-font-weight-light: 300 !default;
+$project-font-weight-normal: 400 !default;
+$project-font-weight-medium: 500 !default;
+$project-font-weight-bold: 700 !default;
+
+// 行高
+$project-line-height-base: 1.6 !default;         // 正文行高
+$project-line-height-heading: 1.3 !default;      // 标题行高
+
+// ==================== 间距体系 ====================
+$project-spacing-unit: 8px !default;
+$project-spacing-1: $project-spacing-unit !default;     // 8px
+$project-spacing-2: $project-spacing-unit * 2 !default; // 16px
+$project-spacing-3: $project-spacing-unit * 3 !default; // 24px
+$project-spacing-4: $project-spacing-unit * 4 !default; // 32px
+
+// ==================== 边框系统 ====================
+$project-border-width-base: 1px !default;
+$project-border-style-base: solid !default;
+$project-border-radius-base: 8px !default;       // 基础圆角
+$project-border-radius-card: 12px !default;       // 卡片圆角
+
+// ==================== 阴影体系 ====================
+$project-box-shadow-light: 0 2px 8px rgba(0, 0, 0, 0.05) !default; // 轻量阴影
+$project-box-shadow-medium: 0 4px 12px rgba(0, 0, 0, 0.08) !default; // 常规阴影
+$project-box-shadow-dark: 0 8px 16px rgba(0, 0, 0, 0.1) !default;   // 强调阴影
+
+// ==================== 布局系统 ====================
+$project-container-max-width: 1280px !default;   // 页面最大宽度
+$project-header-height: 64px !default;            // 头部高度
+$project-sidebar-width: 280px !default;          // 侧边导航宽度
+$project-section-spacing: 80px !default;         // 区块间距
+
+// ==================== 响应式断点 ====================
+$project-breakpoint-xs: 480px !default;          // 手机竖屏
+$project-breakpoint-sm: 768px !default;          // 手机横屏/平板
+$project-breakpoint-md: 992px !default;          // 平板横屏
+$project-breakpoint-lg: 1200px !default;         // 桌面
+$project-breakpoint-xl: 1440px !default;        // 大屏=1 
+// ==================== 动效体系 ====================
+$project-transition-duration: 0.3s !default;    // 基础过渡时间
+$project-transition-timing: cubic-bezier(0.4, 0, 0.2, 1) !default; // 缓动曲线
+$project-transition-all: all $project-transition-duration $project-transition-timing !default;
+
+// ==================== 组件变量 ====================
+// 按钮
+$project-button-height: 40px !default;           // 标准按钮高度
+$project-button-padding: 0 $project-spacing-3 !default; // 按钮内边距
+
+// 输入框
+$project-input-height: 40px !default;            // 输入框高度
+$project-input-border-radius: $project-border-radius-base !default;
+
+// 卡片
+$project-card-padding: $project-spacing-3 !default;    // 卡片内边距
+$project-card-background: $project-color-white !default;// 卡片背景
+
+// 表格
+$project-table-header-bg: #FAFBFF !default;      // 表头背景
+$project-table-row-hover-bg: $project-background-color-base !default; // 行悬停背景

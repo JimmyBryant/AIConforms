@@ -1,0 +1,26 @@
+{
+  "brand": {
+    "name": "VendorSecure"
+  },
+  "hero": {
+    "title": "Third-Party Risk Management Made Simple",
+    "subtitle": "Identify and mitigate vendor risks before they become breaches",
+    "ctaPrimary": "Start Free Trial",
+    "ctaSecondary": "Watch Demo"
+  },
+  "values": {
+    "title": "Why Choose VendorSecure?",
+    "realTimeMonitoring": "Continuous Risk Monitoring",
+    "monitoringDesc": "Automated tracking of vendor security postures with real-time alerts",
+    "assessment": "Compliance Assessments",
+    "assessmentDesc": "Pre-built templates for 50+ security frameworks including SOC2 and ISO27001",
+    "remediation": "Automated Remediation",
+    "remediationDesc": "AI-powered recommendations for risk mitigation"
+  },
+  "stats": {
+    "vendors": "Vendors Monitored",
+    "accuracy": "Detection Accuracy",
+    "response": "Average Response Time",
+    "compliance": "Compliance Frameworks"
+  }
+}

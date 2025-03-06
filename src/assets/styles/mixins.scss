@@ -1,0 +1,22 @@
+// 快速居中
+@mixin flex-center {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  // 间距布局
+  @mixin flex-space-between {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  
+  // 响应式隐藏
+  @mixin respond-to($breakpoint) {
+    @media (max-width: $breakpoint) {
+      @content;
+    }
+}
+
+$--text-color: #000;

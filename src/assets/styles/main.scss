@@ -1,0 +1,10 @@
+// src/assets/styles/main.scss
+@use "./variables.scss" as *;
+@use "./mixins.scss" as *;
+
+
+// 添加全局背景样式
+body {
+    margin: 0;
+    background-color: $--background-color-base;
+}
