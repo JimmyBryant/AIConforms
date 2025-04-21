@@ -1,26 +1,50 @@
 {
   "brand": {
-    "name": "供应商安全平台"
+    "name": "安全供应商"
+  },
+  "nav": {
+    "freeTrial": "免费试用",
+    "getDemo": "预约演示"
   },
   "hero": {
-    "title": "简化的第三方风险管理解决方案",
-    "subtitle": "在风险演变为安全事件前识别并缓解供应商风险",
+    "title": "简化第三方风险管理",
+    "subtitle": "通过企业级安全监控识别、评估和降低供应商风险",
     "ctaPrimary": "免费试用",
     "ctaSecondary": "观看演示"
   },
-  "values": {
-    "title": "为何选择我们？",
-    "realTimeMonitoring": "实时风险监控",
-    "monitoringDesc": "自动化追踪供应商安全态势，实时风险预警",
-    "assessment": "合规性评估",
-    "assessmentDesc": "支持50+安全框架评估模板（含SOC2和ISO27001）", 
-    "remediation": "自动化修复",
-    "remediationDesc": "基于AI的风险缓解建议"
+  "features": {
+    "realTime": {
+      "title": "实时监控",
+      "desc": "持续监控供应商安全态势"
+    },
+    "compliance": {
+      "title": "合规自动化",
+      "desc": "自动化法规合规工作流程"
+    },
+    "analytics": {
+      "title": "风险分析",
+      "desc": "AI驱动的风险评分与洞察"
+    }
   },
   "stats": {
-    "vendors": "监控供应商数量",
-    "accuracy": "风险检测准确率",
-    "response": "平均响应时间",
-    "compliance": "支持合规框架"
+    "vendors": "监控供应商数",
+    "accuracy": "检测准确率",
+    "support": "支持可用性",
+    "frameworks": "合规框架"
+  },
+  "footer": {
+    "companyDesc": "全球企业信赖的领先供应商风险管理平台",
+    "productTitle": "产品",
+    "resourcesTitle": "资源",
+    "contactTitle": "联系我们",
+    "features": "功能特性",
+    "pricing": "定价",
+    "integrations": "系统集成",
+    "blog": "博客",
+    "caseStudies": "客户案例",
+    "webinars": "在线研讨会",
+    "support": "支持中心",
+    "docs": "文档中心",
+    "allRightsReserved": "保留所有权利"
   }
 }

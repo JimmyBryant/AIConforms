@@ -2,25 +2,49 @@
   "brand": {
     "name": "VendorSecure"
   },
+  "nav": {
+    "freeTrial": "Free trial",
+    "getDemo": "Get a demo"
+  },
   "hero": {
     "title": "Third-Party Risk Management Made Simple",
-    "subtitle": "Identify and mitigate vendor risks before they become breaches",
+    "subtitle": "Identify, assess and mitigate vendor risks with enterprise-grade security monitoring",
     "ctaPrimary": "Start Free Trial",
     "ctaSecondary": "Watch Demo"
   },
-  "values": {
-    "title": "Why Choose VendorSecure?",
-    "realTimeMonitoring": "Continuous Risk Monitoring",
-    "monitoringDesc": "Automated tracking of vendor security postures with real-time alerts",
-    "assessment": "Compliance Assessments",
-    "assessmentDesc": "Pre-built templates for 50+ security frameworks including SOC2 and ISO27001",
-    "remediation": "Automated Remediation",
-    "remediationDesc": "AI-powered recommendations for risk mitigation"
+  "features": {
+    "realTime": {
+      "title": "Real-Time Monitoring",
+      "desc": "Continuous vendor security posture monitoring"
+    },
+    "compliance": {
+      "title": "Compliance Automation",
+      "desc": "Automate regulatory compliance workflows"
+    },
+    "analytics": {
+      "title": "Risk Analytics",
+      "desc": "AI-powered risk scoring and insights"
+    }
   },
   "stats": {
     "vendors": "Vendors Monitored",
     "accuracy": "Detection Accuracy",
-    "response": "Average Response Time",
-    "compliance": "Compliance Frameworks"
+    "support": "Support Availability",
+    "frameworks": "Compliance Frameworks"
+  },
+  "footer": {
+    "companyDesc": "Leading vendor risk management platform trusted by enterprises worldwide",
+    "productTitle": "Product",
+    "resourcesTitle": "Resources",
+    "contactTitle": "Contact Us",
+    "features": "Features",
+    "pricing": "Pricing",
+    "integrations": "Integrations",
+    "blog": "Blog",
+    "caseStudies": "Case Studies",
+    "webinars": "Webinars",
+    "support": "Support Center",
+    "docs": "Documentation",
+    "allRightsReserved": "All rights reserved"
   }
 }

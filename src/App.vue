@@ -20,4 +20,7 @@ const elementLocale = computed(() => loadElementLocale(locale.value as 'en' | 'z
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
+body{
+  margin: 0;
+}
 </style>

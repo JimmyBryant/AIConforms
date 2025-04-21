@@ -7,22 +7,25 @@
                     <img src="@/assets/logo.svg" alt="VendorSecure" class="header-logo" />
                     <h1 class="brand-title">{{ $t('brand.name') }}</h1>
                 </div>
-
-                <!-- 语言切换 -->
-                <el-dropdown trigger="click" @command="handleLanguageChange" class="lang-selector">
-                    <el-button type="text">
-                        {{ currentLang.toUpperCase() }}
-                        <el-icon>
-                            <ArrowDown />
-                        </el-icon>
-                    </el-button>
-                    <template #dropdown>
-                        <el-dropdown-menu>
-                            <el-dropdown-item command="en">English</el-dropdown-item>
-                            <el-dropdown-item command="zh">中文</el-dropdown-item>
-                        </el-dropdown-menu>
-                    </template>
-                </el-dropdown>
+                <div>
+                    <!-- 语言切换 -->
+                    <el-dropdown trigger="click" @command="handleLanguageChange" class="lang-selector">
+                        <el-button type="text">
+                            {{ currentLang.toUpperCase() }}
+                            <el-icon>
+                                <ArrowDown />
+                            </el-icon>
+                        </el-button>
+                        <template #dropdown>
+                            <el-dropdown-menu>
+                                <el-dropdown-item command="en">English</el-dropdown-item>
+                                <el-dropdown-item command="zh">中文</el-dropdown-item>
+                            </el-dropdown-menu>
+                        </template>
+                    </el-dropdown>
+                    <el-button>{{ $t('nav.freeTrial') }}</el-button>
+                    <el-button type="primary">{{$t('nav.getDemo')}}</el-button>
+                </div>
             </div>
         </el-header>
 
@@ -72,6 +75,80 @@
                 </el-row>
             </section>
         </main>
+
+        <!-- 新增页脚 -->
+        <el-footer class="security-footer">
+            <div class="footer-content">
+                <el-row :gutter="40">
+                    <!-- 公司简介 -->
+                    <el-col :md="6" :sm="12">
+                        <div class="footer-section">
+                            <img src="@/assets/logo.svg" alt="VendorSecure" class="footer-logo" />
+                            <p class="footer-description">{{ $t('footer.companyDesc') }}</p>
+                            <div class="social-links">
+                                <a v-for="(social, index) in socialLinks" :key="index" :href="social.link"
+                                    target="_blank" :title="social.name" class="social-item">
+                                    <el-icon :size="22">
+                                        <component :is="`icon:${social.icon}`" :style="{ color: social.color }" />
+                                    </el-icon>
+                                </a>
+                            </div>
+                        </div>
+                    </el-col>
+
+                    <!-- 产品链接 -->
+                    <el-col :md="6" :sm="12">
+                        <div class="footer-section">
+                            <h4 class="footer-title">{{ $t('footer.productTitle') }}</h4>
+                            <ul class="footer-links">
+                                <li v-for="(link, index) in productLinks" :key="index">
+                                    <el-link type="info" :href="link.url">
+                                        {{ $t(link.labelKey) }}
+                                    </el-link>
+                                </li>
+                            </ul>
+                        </div>
+                    </el-col>
+
+                    <!-- 资源链接 -->
+                    <el-col :md="6" :sm="12">
+                        <div class="footer-section">
+                            <h4 class="footer-title">{{ $t('footer.resourcesTitle') }}</h4>
+                            <ul class="footer-links">
+                                <li v-for="(link, index) in resourceLinks" :key="index">
+                                    <el-link type="info" :href="link.url">
+                                        {{ $t(link.labelKey) }}
+                                    </el-link>
+                                </li>
+                            </ul>
+                        </div>
+                    </el-col>
+
+                    <!-- 联系方式 -->
+                    <el-col :md="6" :sm="12">
+                        <div class="footer-section">
+                            <h4 class="footer-title">{{ $t('footer.contactTitle') }}</h4>
+                            <div class="contact-info">
+                                <p><el-icon>
+                                        <ChatLineRound />
+                                    </el-icon> {{ $t('footer.support') }}</p>
+                                <p><el-icon>
+                                        <Document />
+                                    </el-icon> {{ $t('footer.docs') }}</p>
+                            </div>
+                        </div>
+                    </el-col>
+                </el-row>
+
+                <!-- 版权信息 -->
+                <div class="copyright-section">
+                    <el-divider />
+                    <p class="copyright-text">
+                        © 2023 VendorSecure. {{ $t('footer.allRightsReserved') }}
+                    </p>
+                </div>
+            </div>
+        </el-footer>
     </div>
 
 </template>
@@ -79,7 +156,9 @@
 <script setup lang="ts">
 import { useI18n } from 'vue-i18n'
 import { ref, computed } from 'vue'
-import { ArrowDown,Monitor,CircleCheck,DataAnalysis } from '@element-plus/icons-vue'
+import { ArrowDown, Monitor, CircleCheck, DataAnalysis } from '@element-plus/icons-vue'
+// 新增图标导入 
+import { Link, ChatLineRound, Document } from '@element-plus/icons-vue'
 
 const { t, locale } = useI18n()
 // 当前语言处理
@@ -110,6 +189,60 @@ const stats = ref([
     { value: '24/7', labelKey: 'stats.support' },
     { value: '50+', labelKey: 'stats.frameworks' }
 ])
+
+// 社交媒体链接数据
+const socialLinks = ref([
+    {
+        icon: 'ri-linkedin-fill',
+        link: 'https://linkedin.com/company/aiconforms',
+        name: 'LinkedIn',
+        color: '#0A66C2' // 品牌蓝色
+    },
+    {
+        icon: 'ri-twitter-x-line',
+        link: 'https://x.com/aiconforms',
+        name: 'X (Twitter)',
+        color: '#000000' // 黑色
+    },
+    {
+        icon: 'ri-facebook-fill',
+        link: 'https://facebook.com/aiconforms',
+        name: 'Facebook',
+        color: '#1877F2' // 脸书蓝
+    },
+    {
+        icon: 'ri-github-fill',
+        link: 'https://github.com/aiconforms',
+        name: 'GitHub',
+        color: '#181717' // GitHub黑
+    },
+    {
+        icon: 'ri-youtube-fill',
+        link: 'https://youtube.com/@aiconforms',
+        name: 'YouTube',
+        color: '#FF0000' // 油管红
+    },
+    {
+        icon: 'ri-wechat-fill',
+        link: '#wechat-qrcode',
+        name: '微信公众号',
+        color: '#07C160' // 微信绿
+    }
+])
+
+// 产品链接数据
+const productLinks = ref([
+    { labelKey: 'footer.features', url: '#' },
+    { labelKey: 'footer.pricing', url: '#' },
+    { labelKey: 'footer.integrations', url: '#' }
+])
+
+// 资源链接数据 
+const resourceLinks = ref([
+    { labelKey: 'footer.blog', url: '#' },
+    { labelKey: 'footer.caseStudies', url: '#' },
+    { labelKey: 'footer.webinars', url: '#' }
+])
 const handleLanguageChange = (lang: 'en' | 'zh') => {
     locale.value = lang
     localStorage.setItem('risk-lang', lang)
@@ -118,6 +251,8 @@ const handleLanguageChange = (lang: 'en' | 'zh') => {
 
 <style lang="scss" scoped>
 .vendor-risk-container {
+    display: flex;
+    flex-direction: column;
     min-height: 100vh;
     background-color: $project-background-color-base;
 
@@ -163,8 +298,10 @@ const handleLanguageChange = (lang: 'en' | 'zh') => {
     }
 
     .risk-main {
-        max-width: $project-container-max-width;
+        flex: 1;
         margin: 0 auto;
+        margin-bottom: $project-spacing-4 * 3; // 增加底部间距
+        max-width: $project-container-max-width;
         padding: $project-spacing-4;
 
         .hero-section {
@@ -302,6 +439,104 @@ const handleLanguageChange = (lang: 'en' | 'zh') => {
                     margin-bottom: $project-spacing-3;
                 }
             }
+        }
+    }
+}
+
+// 新增页脚样式
+.security-footer {
+    background: $project-background-color-dark;
+    color: $project-color-text-secondary;
+    padding: $project-spacing-4 0;
+    margin-top: auto;
+    height: auto;
+
+    .footer-content {
+        max-width: $project-container-max-width;
+        margin: 0 auto;
+        padding: 0 $project-spacing-3;
+    }
+
+    .footer-section {
+        margin-bottom: $project-spacing-4;
+
+        .footer-logo {
+            height: 40px;
+            margin-bottom: $project-spacing-3;
+        }
+
+        .footer-title {
+            color: $project-color-white;
+            font-size: $project-font-size-medium;
+            margin-bottom: $project-spacing-2;
+        }
+
+        .footer-links {
+            list-style: none;
+            padding: 0;
+
+            li {
+                margin-bottom: $project-spacing-2;
+            }
+        }
+
+        .social-links {
+            @include flex-center;
+            gap: $project-spacing-4;
+
+            .social-item {
+                transition: transform 0.3s $project-transition-timing;
+
+                &:hover {
+                    transform: translateY(-2px);
+
+                    // 保留品牌色或使用主色
+                    .el-icon {
+                        color: $project-color-primary !important;
+                    }
+                }
+            }
+        }
+
+        .contact-info {
+            p {
+                @include flex-center-vertical;
+                gap: $project-spacing-2;
+                margin-bottom: $project-spacing-2;
+            }
+        }
+    }
+
+    .copyright-section {
+        text-align: center;
+        padding-top: $project-spacing-4;
+
+        .el-divider {
+            margin: $project-spacing-3 0;
+            background-color: rgba($project-color-white, 0.1);
+        }
+
+        .copyright-text {
+            font-size: $project-font-size-small;
+        }
+    }
+}
+
+// 响应式调整
+@media (max-width: $project-breakpoint-md) {
+    .security-footer {
+        text-align: center;
+
+        .footer-section {
+            margin-bottom: $project-spacing-4 * 2;
+        }
+
+        .social-links {
+            justify-content: center !important;
+        }
+
+        .contact-info p {
+            justify-content: center;
         }
     }
 }

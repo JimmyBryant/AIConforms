@@ -4,6 +4,7 @@ import { resolve } from 'path'
 import AutoImport from 'unplugin-auto-import/vite'
 import Components from 'unplugin-vue-components/vite'
 import { ElementPlusResolver } from 'unplugin-vue-components/resolvers'
+import Icons from 'unplugin-icons/vite'
 
 export default defineConfig({
   plugins: [
@@ -13,7 +14,8 @@ export default defineConfig({
     }),
     Components({
       resolvers: [ElementPlusResolver({ importStyle: 'sass', })]
-    })
+    }),
+    Icons ( { compiler : 'vue3' })
   ],
   resolve: {
     alias: {
