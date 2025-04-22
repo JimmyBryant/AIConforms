@@ -1,45 +1,83 @@
 // element-variables.scss
-/* Element Plus 主题变量 - 主品牌色 #2A5EE6 */
+/* Element Plus Theme - SecureAI v2.0 */
 :root {
-    // 主色系
-    --el-color-primary: #2A5EE6;
-    --el-color-primary-light-3: #547BE9;
-    --el-color-primary-light-5: #7E97ED;
-    --el-color-primary-light-7: #A8B3F2;
-    --el-color-primary-light-8: #D2D9F8;
-    --el-color-primary-light-9: #EBEEFC;
-    --el-color-primary-dark-2: #1A4ABF;
+    // ========== 核心颜色体系 ========== //
+    --el-color-primary: #2A5EE6;        // 主色-科技蓝
+    --el-color-primary-light-3: #{color-mix(in srgb, var(--el-color-primary) 70%, white)};  // #547BE9
+    --el-color-primary-light-5: #{color-mix(in srgb, var(--el-color-primary) 50%, white)};  // #7E97ED
+    --el-color-primary-light-7: #{color-mix(in srgb, var(--el-color-primary) 30%, white)};  // #A8B3F2
+    --el-color-primary-light-8: #{color-mix(in srgb, var(--el-color-primary) 20%, white)};  // #D2D9F8
+    --el-color-primary-light-9: #{color-mix(in srgb, var(--el-color-primary) 10%, white)};  // #EBEEFC
+    --el-color-primary-dark-2: #{color-mix(in srgb, var(--el-color-primary) 80%, black)};    // #1A4ABF
   
-    // 强调色（用于成功状态）
-    --el-color-success: #34D399;
-    --el-color-success-light-3: #5CDBAC;
-    --el-color-success-light-5: #85E3C0;
-    --el-color-success-light-7: #ADEBD5;
-    --el-color-success-light-8: #D6F5EA;
-    --el-color-success-light-9: #EBFAF4;
-    --el-color-success-dark-2: #1A9D6C;
+    // 状态色系
+    --el-color-success: #34D399;       // 成功色-智能绿
+    --el-color-success-light-3: #{color-mix(in srgb, var(--el-color-success) 70%, white)};
+    --el-color-success-light-9: #{color-mix(in srgb, var(--el-color-success) 10%, white)};
+    --el-color-success-dark-2: #{color-mix(in srgb, var(--el-color-success) 80%, black)};
   
-    // 文字色
-    --el-text-color-primary: #1A1A1A;
-    --el-text-color-regular: #4D4D4D;
-    --el-text-color-secondary: #666666;
-    --el-text-color-placeholder: #999999;
+    --el-color-warning: #FFB020;       // 警告色-琥珀黄
+    --el-color-warning-light-3: #{color-mix(in srgb, var(--el-color-warning) 70%, white)};
+    --el-color-warning-light-9: #{color-mix(in srgb, var(--el-color-warning) 10%, white)};
   
-    // 边框
-    --el-border-color: #E0E0E0;
-    --el-border-color-light: #F0F0F0;
-    --el-border-color-extra-light: #F8F8F8;
-    
-    // 圆角
-    --el-border-radius-base: 8px;
-    --el-border-radius-small: 6px;
-    
+    --el-color-danger: #FF6B6B;        // 危险色-珊瑚红
+    --el-color-danger-light-3: #{color-mix(in srgb, var(--el-color-danger) 70%, white)};
+    --el-color-danger-light-9: #{color-mix(in srgb, var(--el-color-danger) 10%, white)};
+  
+    // ========== 中性色体系 ========== //
+    --el-text-color-primary: #0D1F2D;   // 主文本-深空蓝
+    --el-text-color-regular: #425A76;   // 常规文本-中灰蓝
+    --el-text-color-secondary: #6B7C8D; // 次要文本-浅灰蓝
+    --el-text-color-placeholder: #95A5B6; // 占位符
+  
+    // 边框系统
+    --el-border-color: #D8E1E8;        // 常规边框
+    --el-border-color-light: #E5E9F0;  // 浅色边框
+    --el-border-color-lighter: #F0F4F8;// 最浅边框
+  
+    // 背景系统
+    --el-bg-color: #F8FAFC;            // 页面背景
+    --el-bg-color-overlay: rgba(255, 255, 255, 0.96); // 浮层背景
+  
+    // ========== 尺寸与效果 ========== //
+    --el-border-radius-base: 8px;       // 基础圆角
+    --el-border-radius-small: 6px;      // 小圆角
+  
+    // 阴影系统
+    --el-box-shadow: 0 4px 16px rgba(13, 31, 45, 0.08); 
+    --el-box-shadow-light: 0 2px 8px rgba(13, 31, 45, 0.06);
+    --el-box-shadow-dark: 0 8px 24px rgba(13, 31, 45, 0.12);
+  
+    // ========== 交互状态 ========== //
+    --el-disabled-bg-color: var(--el-border-color-light);
+    --el-disabled-text-color: var(--el-text-color-placeholder);
+  
     // 过渡动画
     --el-transition-duration: 0.3s;
     --el-transition-function: cubic-bezier(0.4, 0, 0.2, 1);
   }
   
-  // 覆盖组件基础变量
-  $--font-path: 'element-plus/lib/theme-chalk/fonts';
+  // ========== 组件级覆盖 ========== //
+  // 按钮增强
+  $--button-font-weight: 600;
+  $--button-hover-tint-percent: 12%;
+  $--button-active-shade-percent: 12%;
+  
+  // 菜单系统
+  $--menu-item-hover-fill: rgba(42, 94, 230, 0.06);
+  $--menu-active-color: var(--el-color-primary);
+  
+  // 输入框
+  $--input-hover-border-color: var(--el-color-primary-light-3);
+  $--input-focus-border-color: var(--el-color-primary);
+  
+  // 表格
+  $--table-header-background-color: #F8FAFC;
+  $--table-row-hover-background-color: var(--el-color-primary-light-9);
+  
+  // 覆盖Element默认变量
   $--color-primary: var(--el-color-primary);
   $--color-success: var(--el-color-success);
+  $--color-warning: var(--el-color-warning);
+  $--color-danger: var(--el-color-danger);
+  $--font-path: 'element-plus/lib/theme-chalk/fonts';

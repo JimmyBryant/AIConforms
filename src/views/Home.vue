@@ -18,7 +18,7 @@
             </el-menu>
             <!-- 独立操作项 -->
             <div class="nav-actions">
-                <el-button link type="primary">Contact Sales</el-button>
+                <el-button class="link-btn" link type="primary">Contact Sales</el-button>
                 <el-button type="primary" class="demo-btn">Get Demo</el-button>
             </div>
         </div>
@@ -49,75 +49,133 @@
         </div>
     </section>
 
-    <!-- Core Solutions -->
     <section class="solutions" id="solutions">
         <div class="container">
-            <!-- Secure Solution -->
-            <div class="solution-section" data-aos="fade-up">
-                <h2><span class="solution-tag security">Secure</span>AI Security That Outsmarts Threats</h2>
-                <div class="capability-grid">
-                    <div class="capability-card" v-for="cap in securityCapabilities" :key="cap.title">
-                        <h3>{{ cap.title }}</h3>
-                        <p class="capability-desc">{{ cap.description }}</p>
-                        <div class="benefits">
-                            <div class="benefit-item" v-for="(benefit, bi) in cap.benefits" :key="bi">
-                                <el-icon><Select /></el-icon>
-                                <span>{{ benefit }}</span>
+
+            <div class="cards-container">
+                <!-- 安全卡片 -->
+                <div class="solution-card security" data-aos="flip-left">
+                    <div class="card-header">
+                        <icon icon="carbon:security" class="icon" />
+                        <h3>Secure AI Infrastructure</h3>
+                    </div>
+                    <div class="card-content">
+                        <p class="card-desc">
+                            Proactive defense with 10ms threat interception
+                        </p>
+                        <ul class="capability-list">
+                            <li v-for="(item, index) in securityFeatures" :key="index">
+                                <div class="capability-icon">
+                                    <icon :icon="item.icon" />
+                                </div>
+                                <div>
+                                    <h4>
+                                        {{ item.title }}
+                                    </h4>
+                                    <p>
+                                        {{ item.desc }}
+                                    </p>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- 伦理对齐卡片 -->
+                <div class="solution-card alignment" data-aos="flip-up">
+                    <div class="card-header">
+                        <icon icon="mingcute:ai-line" class="icon" />
+                        <h3>Ethical AI Alignment</h3>
+                    </div>
+                    <div class="card-content">
+                        <p class="card-desc">
+                            Bias mitigation and decision transparency
+                        </p>
+                        <div class="stats-grid">
+                            <div class="stat-item" v-for="stat in alignmentStats" :key="stat.value">
+                                <icon :icon="stat.icon" />
+                                <div class="stat-value">{{ stat.value }}</div>
+                                <div class="stat-label">{{ stat.label }}</div>
+                            </div>
+                        </div>
+                        <ul class="feature-tags">
+                            <li v-for="(tag, i) in alignmentTags" :key="i">
+                                <icon :icon="tag.icon" class="mr-2" />
+                                {{ tag.text }}
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- 合规治理卡片 -->
+                <div class="solution-card governance" data-aos="flip-right">
+                    <div class="card-header">
+                        <icon icon="carbon:document" class="icon" />
+                        <h3>Automated Compliance</h3>
+                    </div>
+                    <div class="card-content">
+                        <p class="card-desc">
+                            Audit-ready controls for global regulations
+                        </p>
+                        <div class="compliance-progress">
+                            <div class="progress-item" v-for="item in complianceStandards" :key="item.name">
+                                <div class="progress-label">
+                                    <icon :icon="item.icon" class="mr-2" />
+                                    {{ item.name }}
+                                </div>
+                                <div class="progress-bar">
+                                    <div class="progress-fill"
+                                        :style="{ width: item.coverage, backgroundColor: item.color }">
+                                        <icon icon="carbon:checkmark" />
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="regulation-list">
+                            <div class="regulation-item" v-for="reg in regulations" :key="reg">
+                                <icon icon="carbon:checkmark-filled" />
+                                <span>{{ reg }}</span>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
-
-            <!-- Align Solution -->
-            <div class="solution-section" data-aos="fade-up">
-                <h2><span class="solution-tag alignment">Align</span>Ethical AI That Earns Trust</h2>
-                <el-timeline>
-                    <el-timeline-item v-for="(item, index) in alignmentProcess" :key="index" :type="item.type"
-                        :timestamp="item.step">
-                        <h4>{{ item.title }}</h4>
-                        <p>{{ item.content }}</p>
-                    </el-timeline-item>
-                </el-timeline>
-            </div>
-
-            <!-- Govern Solution -->
-            <div class="solution-section" data-aos="fade-up">
-                <h2><span class="solution-tag governance">Govern</span>Audit-Ready Compliance Accelerator</h2>
-                <el-table :data="complianceStandards" style="width: 100%">
-                    <el-table-column prop="standard" label="Standard" width="180" />
-                    <el-table-column prop="requirement" label="Requirement" />
-                    <el-table-column prop="coverage" label="Coverage" width="120">
-                        <template #default="scope">
-                            <el-tag :type="scope.row.status">{{ scope.row.coverage }}</el-tag>
-                        </template>
-                    </el-table-column>
-                </el-table>
-            </div>
         </div>
     </section>
 
-    <!-- Technical Specifications -->
-    <section class="tech-specs">
+    <!-- Technology Section -->
+    <section class="technology" id="technology">
         <div class="container">
-            <h2 data-aos="fade-up">Enterprise-Grade AI Infrastructure</h2>
-            <el-row :gutter="30">
-                <el-col :md="8" v-for="spec in techSpecs" :key="spec.title" data-aos="zoom-in">
-                    <div class="spec-card">
-                        <h3>{{ spec.title }}</h3>
-                        <ul class="spec-list">
-                            <li v-for="(item, idx) in spec.items" :key="idx">
-                                <el-icon>
-                                    <Right />
-                                </el-icon>
-                                {{ item }}
-                            </li>
-                        </ul>
-                    </div>
-                </el-col>
-            </el-row>
+            <h2 data-aos="fade-up">Core Architecture</h2>
+
+            <!-- Architecture Overview -->
+            <div class="architecture-grid" data-aos="fade-up">
+                <div class="arch-card" v-for="feature in architectureFeatures" :key="feature.title">
+                    <div class="arch-icon" :style="{ backgroundColor: feature.color }"></div>
+                    <h3>{{ feature.title }}</h3>
+                    <p>{{ feature.description }}</p>
+                    <ul class="spec-list">
+                        <li v-for="(spec, idx) in feature.specs" :key="idx">
+                            <el-icon>
+                                <Right />
+                            </el-icon>
+                            {{ spec }}
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Technical Specifications -->
+            <div class="specs-grid" data-aos="fade-up">
+                <div class="metric-card" v-for="metric in performanceMetrics" :key="metric.title">
+                    <h3>{{ metric.value }}</h3>
+                    <p>{{ metric.title }}</p>
+                    <div class="metric-bar" :style="{ backgroundColor: metric.color }"></div>
+                </div>
+            </div>
         </div>
     </section>
+
     <!-- 新增客户案例板块 -->
     <section class="clients" id="clients">
         <div class="container">
@@ -137,20 +195,6 @@
                             </div>
                         </div>
                     </el-card>
-                </el-col>
-            </el-row>
-        </div>
-    </section>
-
-    <!-- 新增数据指标板块 -->
-    <section class="metrics">
-        <div class="container">
-            <el-row :gutter="30">
-                <el-col :md="6" v-for="metric in metrics" :key="metric.title" data-aos="zoom-in">
-                    <div class="metric-card">
-                        <h3>{{ metric.value }}</h3>
-                        <p>{{ metric.title }}</p>
-                    </div>
                 </el-col>
             </el-row>
         </div>
@@ -207,8 +251,9 @@
 </template>
 
 <script setup lang="ts">
-import { Select, Right } from '@element-plus/icons-vue'
+import { Right } from '@element-plus/icons-vue'
 import { ref, onMounted, onBeforeUnmount } from 'vue'
+import { Icon } from '@iconify/vue'
 
 const isMobile = ref(false)
 
@@ -253,29 +298,119 @@ const testimonials = [
     }
 ]
 
-const metrics = [
-    { value: '99.99%', title: 'Platform Uptime' },
-    { value: '4.9/5', title: 'Customer Satisfaction' },
-    { value: '10ms', title: 'Latency Guarantee' },
-    { value: '200+', title: 'Enterprise Clients' }
-]
+interface SecurityCapability {
+    capability: string
+    technology: string
+    impact: string
+    statusType: 'success' | 'warning'
+}
 
-const pricingPlans = [
-    {
-        name: 'Starter',
-        price: '999',
-        features: ['Basic Security', 'Team Support', '50K API Calls'],
-        featured: false
-    }
-]
+interface AlignmentProcess {
+    stage: string
+    title: string
+    description: string
+    type: 'primary' | 'success'
+    metric?: string
+}
 
-const blogPosts = [
+interface ComplianceStandard {
+    name: string
+    description: string
+    coverage: string
+    color: string
+}
+// 安全特性数据
+const securityFeatures = ref([
     {
-        title: 'Navigating the EU AI Act',
-        excerpt: 'Learn how to prepare for new regulations...',
-        image: '/images/blog/regulations.jpg'
+        icon: 'carbon:security',
+        subIcon: 'carbon:target',
+        title: 'Adversarial Testing',
+        desc: 'Simulate 1000+ attack vectors'
+    },
+    {
+        icon: 'carbon:scan',
+        subIcon: 'carbon:chart-line',
+        title: 'Runtime Scanner',
+        desc: 'Real-time threat detection'
+    },
+    {
+        icon: 'carbon:encryption',
+        subIcon: 'carbon:data-check',
+        title: 'Data Protection',
+        desc: 'End-to-end encryption for all model interactions'
     }
-]
+])
+
+// 对齐统计数据
+const alignmentStats = ref([
+    {
+        icon: 'carbon:list-boxes',
+        value: '107+',
+        label: 'Fairness Metrics'
+    },
+    {
+        icon: 'carbon:filter',
+        value: '99.7%',
+        label: 'Toxicity Filtering'
+    }
+])
+
+// 对齐标签
+const alignmentTags = ref([
+    { icon: 'carbon:scalability', text: 'Dynamic Re-weighting' },
+    { icon: 'carbon:map', text: 'Explainability Maps' },
+    { icon: 'carbon:settings', text: 'Policy Engine' }
+])
+
+// 合规标准
+const complianceStandards = ref([
+    {
+        name: 'NIST AI RMF',
+        coverage: '98%',
+        color: '#3B82F6',
+        icon: 'carbon:lock'
+    },
+    {
+        name: 'GDPR',
+        coverage: '100%',
+        color: '#10B981',
+        icon: 'carbon:data-check'
+    }
+])
+// Security Capabilities
+const securityCapabilities = ref<SecurityCapability[]>([
+    {
+        capability: 'Adversarial Testing',
+        technology: '1000+ attack vectors simulation',
+        impact: '93% Faster Vulnerability Discovery',
+        statusType: 'success'
+    },
+    {
+        capability: 'Runtime Protection',
+        technology: 'Reinforcement Learning-based detection',
+        impact: '99.99% Threat Block Rate',
+        statusType: 'success'
+    }
+])
+
+// Alignment Process
+const alignmentProcess = ref<AlignmentProcess[]>([
+    {
+        stage: 'Phase 1',
+        title: 'Bias Detection',
+        description: 'Continuous monitoring of 107 fairness metrics',
+        type: 'primary',
+        metric: '0.5ppb Discrimination Rate'
+    },
+    {
+        stage: 'Phase 2',
+        title: 'Value Alignment',
+        description: 'Dynamic parameter balancing with HVE technology',
+        type: 'success',
+        metric: '99.7% Toxicity Filtering'
+    }
+])
+
 const architecturePillars: Pillar[] = [
     {
         name: 'Model Security',
@@ -294,161 +429,60 @@ const architecturePillars: Pillar[] = [
     }
 ]
 
-// Security Capabilities
-interface Capability {
-    title: string
-    description: string
-    benefits: string[]
-}
-
-const securityCapabilities: Capability[] = [
+// Technology Features
+const architectureFeatures = [
     {
-        title: 'Autonomous Offensive Validation',
-        description: 'Proactive threat detection system',
-        benefits: [
-            '1000+ LLM-driven attacks simulated',
-            'Real-time vulnerability dashboard',
-            'Actionable mitigation steps'
+        title: 'Multi-Layer Defense',
+        description: 'Three-tier protection architecture',
+        color: '#2A5EE6',
+        specs: [
+            '99.2% threat detection rate',
+            '0.008% false positive rate',
+            'Automated attack simulation'
         ]
     },
     {
-        title: 'Real-time Defense Layer',
-        description: 'Inline request inspection',
-        benefits: [
-            '<10ms latency overhead',
-            'Context-aware filtering',
-            'Dynamic policy enforcement'
+        title: 'Ethical Engine',
+        description: 'Dynamic value alignment system',
+        color: '#34D399',
+        specs: [
+            '150+ customizable ethics dimensions',
+            'Real-time toxicity filtering',
+            'Decision transparency reports'
         ]
     }
 ]
 
-// Compliance Standards
-interface Compliance {
-    standard: string
-    requirement: string
-    coverage: string
-    status: 'success' | 'warning'
-}
-
-const complianceStandards: Compliance[] = [
+// Performance Metrics
+const performanceMetrics = [
     {
-        standard: 'EU AI Act',
-        requirement: 'High-risk system compliance',
-        coverage: '100%',
-        status: 'success'
+        title: 'Threat Response Time',
+        value: '<20ms',
+        color: '#FF6B6B'
     },
     {
-        standard: 'NIST AI RMF',
-        requirement: 'Risk management framework',
-        coverage: '95%',
-        status: 'success'
-    }
-]
-
-// Technical Specifications
-interface TechSpec {
-    title: string
-    items: string[]
-}
-
-const techSpecs: TechSpec[] = [
-    {
-        title: 'Performance',
-        items: [
-            'P99 latency <200ms',
-            '99.99% uptime SLA',
-            'Horizontal scaling'
-        ]
-    },
-    {
-        title: 'Security',
-        items: [
-            'FIPS 140-2 cryptography',
-            'SOC 2 Type II certified',
-            'Zero-trust architecture'
-        ]
+        title: 'Compliance Coverage',
+        value: '98.5%',
+        color: '#4ECDC4'
     }
 ]
 </script>
 
 <style lang="scss" scoped>
+// 主题色系统
+$primary: #1A3A6B; // 深海蓝 - 象征信任与安全
+$accent: #34D399; // 智能绿 - 代表成长与透明
+$alert: #FF6B6B; // 珊瑚红 - 用于安全警示
+$dark: #0D1F2D; // 深空蓝 - 替代纯黑
+$light: #F8FAFC; // 冰川白 - 主背景色
+$neutral: #E5E9F0; // 北极灰 - 辅助背景
 // 在样式变量中定义颜色方案
 $text-dark: #1A1A1A; // 主文本色
 $primary: #2A5EE6; // 品牌主色
 $accent: #34D399; // 强调色
 $hover-bg: rgba($accent, 0.05); // Hover背景
 
-// .global-header {
 
-//     // 覆盖菜单项基础样式
-//     :deep(.el-menu) {
-//         --el-menu-text-color: #{$text-dark};
-//         --el-menu-hover-text-color: #{$text-dark};
-//         --el-menu-active-color: #{$accent};
-//         --el-menu-bg-color: transparent;
-//     }
-
-//     // 菜单项状态管理
-//     :deep(.el-menu-item),
-//     :deep(.el-sub-menu__title) {
-//         color: $text-dark;
-//         font-weight: 500;
-//         transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-
-//         // Hover状态
-//         &:hover {
-//             color: darken($text-dark, 10%) !important;
-//             background: $hover-bg !important;
-//         }
-
-//         // 激活状态
-//         &.is-active {
-//             color: $accent !important;
-
-//             &::after {
-//                 background: $accent;
-//             }
-//         }
-
-//         // 焦点状态
-//         &:focus {
-//             background: rgba($accent, 0.08) !important;
-//         }
-//     }
-
-//     // 下拉菜单样式
-//     :deep(.el-menu--horizontal) {
-//         &.is-opened {
-//             .el-sub-menu__title {
-//                 color: $accent !important;
-//             }
-//         }
-
-//         .el-menu--popup {
-//             background: rgba(255, 255, 255, 0.98) !important;
-//             border: 1px solid rgba($text-dark, 0.1);
-//             box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
-
-//             .el-menu-item {
-//                 color: $text-dark !important;
-
-//                 &:hover {
-//                     color: $accent !important;
-//                     background: $hover-bg !important;
-//                 }
-//             }
-//         }
-//     }
-
-//     // 移动端菜单颜色调整
-//     @media (max-width: 992px) {
-//         :deep(.el-menu--collapse) {
-//             .el-sub-menu__title {
-//                 color: $text-dark !important;
-//             }
-//         }
-//     }
-// }
 
 .global-header {
     position: fixed;
@@ -477,6 +511,7 @@ $hover-bg: rgba($accent, 0.05); // Hover背景
         margin: 0 40px;
         border-bottom: none;
         align-items: center;
+        background-color: transparent;
 
         :deep(.el-menu-item),
         :deep(.el-sub-menu__title) {
@@ -494,6 +529,14 @@ $hover-bg: rgba($accent, 0.05); // Hover背景
     .nav-actions {
         display: flex;
         gap: 20px;
+
+        .link-btn {
+            color: #1a1a1a;
+
+            &:hover {
+                color: #2A5EE6;
+            }
+        }
 
         .demo-btn {
             padding: 12px 24px;
@@ -534,9 +577,13 @@ $hover-bg: rgba($accent, 0.05); // Hover背景
 }
 
 .hero {
-    background: linear-gradient(135deg, #1a1a1a 0%, #2d2d2d 100%);
     color: white;
     padding: 3rem 0;
+
+    .pillar {
+        background: rgba($primary, 0.15);
+        border: 1px solid rgba($accent, 0.2);
+    }
 
     h1 {
         font-size: 4rem;
@@ -550,7 +597,6 @@ $hover-bg: rgba($accent, 0.05); // Hover背景
         margin-top: 80px;
 
         .pillar {
-            background: rgba(white, 0.05);
             padding: 30px;
             border-radius: 16px;
 
@@ -565,47 +611,61 @@ $hover-bg: rgba($accent, 0.05); // Hover背景
 }
 
 .solution-section {
-    margin: 120px 0;
+    margin: 80px 0;
 
     h2 {
-        font-size: 2.5rem;
+        font-size: 2.2rem;
         margin-bottom: 40px;
-
-        .solution-tag {
-            display: inline-block;
-            padding: 4px 12px;
-            border-radius: 4px;
-            margin-right: 15px;
-            font-size: 1.2rem;
-            text-transform: uppercase;
-
-            &.security {
-                background: #FF6B6B;
-            }
-
-            &.alignment {
-                background: #4ECDC4;
-            }
-
-            &.governance {
-                background: #45B7D1;
-            }
-        }
     }
+}
 
-    .capability-grid {
-        display: grid;
-        grid-template-columns: repeat(2, 1fr);
-        gap: 30px;
+.tech-stats {
+    display: flex;
+    gap: 30px;
+    margin: 30px 0;
 
-        .capability-card {
-            background: white;
-            padding: 30px;
-            border-radius: 12px;
-            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.1);
+    .stat {
+        flex: 1;
+        background: rgba($primary, 0.05);
+        border-radius: 12px;
+        padding: 20px;
+        text-align: center;
+
+        &-value {
+            font-size: 2.4rem;
+            font-weight: 700;
+            color: $primary;
+        }
+
+        &-label {
+            color: $text-dark;
+            opacity: 0.8;
         }
     }
 }
+
+.metric-badge {
+    display: inline-block;
+    padding: 4px 12px;
+    background: rgba($accent, 0.1);
+    color: $accent;
+    border-radius: 6px;
+    margin-top: 10px;
+}
+
+.coverage-progress {
+    height: 8px;
+    background: #eee;
+    border-radius: 4px;
+    margin-top: 15px;
+
+    .progress-bar {
+        height: 100%;
+        border-radius: 4px;
+        transition: width 0.5s ease;
+    }
+}
+
 
 .tech-specs {
     padding: 80px 0;
@@ -662,20 +722,20 @@ $hover-bg: rgba($accent, 0.05); // Hover背景
 
 /* Hero 容器特例 */
 .hero .container {
-    padding-top: 120px; // 补偿固定头部的间距
-    padding-bottom: 120px;
+    padding-top: 60px; // 补偿固定头部的间距
+    padding-bottom: 60px;
 }
 
 /* 响应式覆盖 */
 @media (max-width: 768px) {
     .hero .container {
-        padding-top: 80px;
-        padding-bottom: 80px;
+        padding-top: 40px;
+        padding-bottom: 40px;
     }
 }
 
 .clients {
-    padding: 120px 0;
+    padding: 60px 0;
     background: #f8f9fa;
 
     .logo-wall {
@@ -758,15 +818,88 @@ $bg-accent: rgba(#34D399, 0.05);
 
 // 板块背景色调整
 .hero {
-    background: linear-gradient(135deg, $bg-dark 0%, lighten($bg-dark, 5%) 100%);
+    background: linear-gradient(135deg, $dark 0%, lighten($dark, 8%) 100%);
 }
 
 .solutions {
-    background: white;
+    background: $light;
+
+    .solution-section {
+        padding: 60px 0;
+
+        &:nth-child(even) {
+            background: white;
+            box-shadow: 0 8px 24px rgba($dark, 0.04);
+        }
+    }
+
+    .solution-tag {
+        &.security {
+            background: rgba($alert, 0.15);
+            color: $alert;
+        }
+
+        &.alignment {
+            background: rgba($accent, 0.15);
+            color: $accent;
+        }
+
+        &.governance {
+            background: rgba($primary, 0.15);
+            color: $primary;
+        }
+    }
 }
 
-.tech-specs {
-    background: $bg-gray;
+// Technology Section
+.technology {
+    background: linear-gradient(45deg, $neutral 0%, $light 100%);
+
+    .arch-card {
+        background: rgba(white, 0.9);
+        backdrop-filter: blur(8px);
+        border: 1px solid rgba($primary, 0.1);
+    }
+}
+
+// Clients Section
+.clients {
+    background: white;
+    border-top: 1px solid rgba($primary, 0.1);
+
+    .logo-wall img {
+        filter: grayscale(1);
+        transition: filter 0.3s;
+
+        &:hover {
+            filter: none;
+        }
+    }
+}
+
+// Footer
+.global-footer {
+    background: $dark;
+    color: rgba(white, 0.8);
+
+    a {
+        color: rgba(white, 0.7);
+
+        &:hover {
+            color: $accent;
+        }
+    }
+}
+
+// 响应式调整
+@media (max-width: 768px) {
+    .solution-section {
+        margin: 40px 0 !important;
+
+        h2 {
+            font-size: 1.6rem !important;
+        }
+    }
 }
 
 .clients {
@@ -780,12 +913,32 @@ $bg-accent: rgba(#34D399, 0.05);
     color: white;
 }
 
-.pricing {
-    background: $bg-gray;
+.technology {
+    padding: 60px 0;
+
+    .architecture-grid {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 40px;
+        margin: 2rem 0;
+    }
+
+    .arch-card {
+        background: white;
+        padding: 30px;
+        border-radius: 16px;
+        box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
+    }
 }
 
-.blog {
-    background: white;
+@media (max-width: 768px) {
+    .architecture-grid {
+        grid-template-columns: 1fr !important;
+    }
+
+    .solution-section h2 {
+        font-size: 1.8rem !important;
+    }
 }
 
 // 图片资源替换为色块
@@ -839,6 +992,223 @@ $bg-accent: rgba(#34D399, 0.05);
             height: 48px !important;
             line-height: 48px !important;
         }
+    }
+}
+
+.cards-container {
+    display: grid;
+    gap: 2rem;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    padding: 2rem 0;
+}
+
+.solution-card {
+    border-radius: 1.5rem;
+    padding: 2rem;
+    transition: transform 0.3s ease;
+
+    &.security {
+        background: linear-gradient(135deg, #F0F9FF 0%, #E0F2FE 100%);
+    }
+
+    &.alignment {
+        background: linear-gradient(135deg, #F0FDF4 0%, #DCFCE7 100%);
+    }
+
+    &.governance {
+        background: linear-gradient(135deg, #F5F3FF 0%, #EDE9FE 100%);
+    }
+}
+
+.card-header {
+    margin-bottom: 1.5rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    .icon {
+        font-size: 3rem;
+        margin-bottom: 1rem;
+
+        .security & {
+            color: #2563EB;
+        }
+
+        .alignment & {
+            color: #059669;
+        }
+
+        .governance & {
+            color: #6D28D9;
+        }
+    }
+
+    h3 {
+        font-size: 1.5rem;
+        font-weight: 600;
+        margin: 0;
+    }
+
+}
+
+.card-desc {
+    font-size: 1.1rem;
+    margin: 0 0 1rem;
+}
+
+.capability-list {
+    li {
+        display: flex;
+        gap: 1rem;
+        padding: 1rem 0;
+        align-items: center;
+
+        i {
+            font-size: 1.2rem;
+            margin-top: 0.3rem;
+        }
+
+        h4 {
+            font-weight: 500;
+            margin: 0 0 0.3rem;
+        }
+
+        p {
+            color: #64748B;
+            font-size: 0.9rem;
+            margin: 0;
+        }
+    }
+}
+
+.metric-badge {
+    background: white;
+    border-radius: 0.75rem;
+    padding: 1rem;
+    text-align: center;
+    margin-top: 1.5rem;
+
+    .value {
+        display: block;
+        font-size: 1.8rem;
+        font-weight: 700;
+    }
+
+    .label {
+        color: #64748B;
+        font-size: 0.9rem;
+    }
+
+    .icon {
+        font-size: 2rem;
+    }
+}
+
+.stats-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1rem;
+    margin: 1.5rem 0;
+
+    .stat-item {
+        background: rgba(255, 255, 255, 0.9);
+        border-radius: 0.75rem;
+        padding: 1rem;
+        text-align: center;
+
+        .stat-value {
+            font-size: 1.5rem;
+            font-weight: 700;
+        }
+
+        .stat-label {
+            color: #64748B;
+            font-size: 0.85rem;
+        }
+    }
+}
+
+.compliance-progress {
+    .progress-item {
+        margin: 1.2rem 0;
+
+        .progress-bar {
+            background: #E2E8F0;
+            border-radius: 0.5rem;
+            height: 8px;
+            margin-top: 0.5rem;
+            overflow: hidden;
+        }
+
+        .progress-fill {
+            border-radius: 0.5rem;
+            height: 100%;
+            transition: width 0.8s ease;
+        }
+    }
+}
+
+.flex {
+    display: flex;
+}
+
+.justify-center {
+    justify-content: center;
+}
+
+
+
+.icon {
+    font-size: 2rem;
+    margin-bottom: 1rem;
+}
+
+.capability-icon {
+    :deep(svg) {
+        width: 2.5rem;
+        height: 2.5rem;
+        color: currentColor;
+    }
+}
+
+/* 保持原有卡片样式 */
+.solution-card {
+    /* 原有卡片样式不变 */
+
+    &.security {
+
+        .icon,
+        .capability-icon {
+            color: #2563EB;
+        }
+    }
+
+    &.alignment {
+
+        .icon,
+        .capability-icon {
+            color: #059669;
+        }
+    }
+
+    &.governance {
+
+        .icon,
+        .capability-icon {
+            color: #6D28D9;
+        }
+    }
+}
+
+/* 响应式调整 */
+@media (max-width: 768px) {
+    .icon {
+        font-size: 1.8rem;
+    }
+
+    .capability-icon :deep(svg) {
+        width: 2rem;
+        height: 2rem;
     }
 }
 </style>
