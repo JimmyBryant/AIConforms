@@ -2,7 +2,7 @@
   <!-- Fixed Header -->
   <nav class="fixed-header">
     <div class="header-container">
-      <div class="logo"></div>
+      <div class="logo">Logo</div>
       
       <!-- 桌面端完整菜单 -->
       <el-menu 
@@ -289,6 +289,10 @@ $light: #F5F7FA;
             height: 40px;
             background: $primary;
             border-radius: 6px;
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
         }
 
         .el-menu--horizontal {

@@ -8,6 +8,7 @@ import en from 'element-plus/es/locale/lang/en'
 import AOS from 'aos'
 import 'aos/dist/aos.css'
 import type { AosOptions } from 'aos'
+import '@/assets/styles/element-variables.scss'
 
 // 定义全局属性类型扩展
 declare module '@vue/runtime-core' {
