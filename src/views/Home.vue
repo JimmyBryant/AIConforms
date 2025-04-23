@@ -58,13 +58,13 @@
                     <div class="card-header">
                         <icon icon="carbon:security" class="icon" />
                         <h3>Secure AI Infrastructure</h3>
-                    </div>
-                    <div class="card-content">
-                        <p class="card-desc">
+                        <p class="section-subtitle">
                             Proactive defense with 10ms threat interception
                         </p>
+                    </div>
+                    <div class="card-content">
                         <ul class="capability-list">
-                            <li v-for="(item, index) in securityFeatures" :key="index">
+                            <li v-for="(item, index) in securityItems" :key="index">
                                 <div class="capability-icon">
                                     <icon :icon="item.icon" />
                                 </div>
@@ -78,32 +78,35 @@
                                 </div>
                             </li>
                         </ul>
+
                     </div>
                 </div>
 
                 <!-- 伦理对齐卡片 -->
-                <div class="solution-card alignment" data-aos="flip-up">
+                <div class="solution-card alignment">
                     <div class="card-header">
-                        <icon icon="mingcute:ai-line" class="icon" />
+                        <icon icon="ph:scales" class="icon" />
                         <h3>Ethical AI Alignment</h3>
+                        <p class="section-subtitle">Bias and toxicity erode brand trust. We embed mitigation and
+                            transparency at the core.</p>
                     </div>
                     <div class="card-content">
-                        <p class="card-desc">
-                            Bias mitigation and decision transparency
-                        </p>
-                        <div class="stats-grid">
-                            <div class="stat-item" v-for="stat in alignmentStats" :key="stat.value">
-                                <icon :icon="stat.icon" />
-                                <div class="stat-value">{{ stat.value }}</div>
-                                <div class="stat-label">{{ stat.label }}</div>
-                            </div>
-                        </div>
-                        <ul class="feature-tags">
-                            <li v-for="(tag, i) in alignmentTags" :key="i">
-                                <icon :icon="tag.icon" class="mr-2" />
-                                {{ tag.text }}
+                        <ul class="capability-list">
+                            <li v-for="(item, index) in alignItems" :key="index">
+                                <div class="capability-icon">
+                                    <icon :icon="item.icon" />
+                                </div>
+                                <div>
+                                    <h4>
+                                        {{ item.title }}
+                                    </h4>
+                                    <p>
+                                        {{ item.desc }}
+                                    </p>
+                                </div>
                             </li>
                         </ul>
+
                     </div>
                 </div>
 
@@ -112,31 +115,25 @@
                     <div class="card-header">
                         <icon icon="carbon:document" class="icon" />
                         <h3>Automated Compliance</h3>
+                        <p class="solution-subtitle">Audit-ready controls for global regulations</p>
                     </div>
                     <div class="card-content">
-                        <p class="card-desc">
-                            Audit-ready controls for global regulations
-                        </p>
-                        <div class="compliance-progress">
-                            <div class="progress-item" v-for="item in complianceStandards" :key="item.name">
-                                <div class="progress-label">
-                                    <icon :icon="item.icon" class="mr-2" />
-                                    {{ item.name }}
+                        <ul class="capability-list">
+                            <li v-for="(item, index) in governItems" :key="index">
+                                <div class="capability-icon">
+                                    <icon :icon="item.icon" />
                                 </div>
-                                <div class="progress-bar">
-                                    <div class="progress-fill"
-                                        :style="{ width: item.coverage, backgroundColor: item.color }">
-                                        <icon icon="carbon:checkmark" />
-                                    </div>
+                                <div>
+                                    <h4>
+                                        {{ item.title }}
+                                    </h4>
+                                    <p>
+                                        {{ item.desc }}
+                                    </p>
                                 </div>
-                            </div>
-                        </div>
-                        <div class="regulation-list">
-                            <div class="regulation-item" v-for="reg in regulations" :key="reg">
-                                <icon icon="carbon:checkmark-filled" />
-                                <span>{{ reg }}</span>
-                            </div>
-                        </div>
+                            </li>
+                        </ul>
+
                     </div>
                 </div>
             </div>
@@ -298,116 +295,62 @@ const testimonials = [
     }
 ]
 
-interface SecurityCapability {
-    capability: string
-    technology: string
-    impact: string
-    statusType: 'success' | 'warning'
-}
-
-interface AlignmentProcess {
-    stage: string
-    title: string
-    description: string
-    type: 'primary' | 'success'
-    metric?: string
-}
-
-interface ComplianceStandard {
-    name: string
-    description: string
-    coverage: string
-    color: string
-}
-// 安全特性数据
-const securityFeatures = ref([
+const securityItems = ref([
     {
-        icon: 'carbon:security',
-        subIcon: 'carbon:target',
-        title: 'Adversarial Testing',
-        desc: 'Simulate 1000+ attack vectors'
+        icon: 'line-md:security',
+        title: 'Autonomous Offensive Validation',
+        desc: 'Launches thousands of LLM‑driven attacks with actionable dashboard findings'
     },
     {
         icon: 'carbon:scan',
-        subIcon: 'carbon:chart-line',
-        title: 'Runtime Scanner',
-        desc: 'Real-time threat detection'
+        title: 'Safety & Robustness Scanner',
+        desc: 'Agentic scanning plus rule‑based tests for edge case detection'
     },
     {
-        icon: 'carbon:encryption',
-        subIcon: 'carbon:data-check',
-        title: 'Data Protection',
-        desc: 'End-to-end encryption for all model interactions'
+        icon: 'mdi:encryption-outline',
+        title: 'Realtime Defense Layer',
+        desc: 'Lightweight inline agent blocks malicious payloads in <10ms'
     }
 ])
 
-// 对齐统计数据
-const alignmentStats = ref([
+const alignItems = ref([
     {
-        icon: 'carbon:list-boxes',
-        value: '107+',
-        label: 'Fairness Metrics'
+        icon: 'material-symbols:balance',
+        title: 'Bias & Fairness Assurance',
+        desc: 'Continuous parity tests with automatic re‑weighting'
     },
     {
-        icon: 'carbon:filter',
-        value: '99.7%',
-        label: 'Toxicity Filtering'
+        icon: 'ph:binoculars',
+        title: 'Explainability & Interpretability',
+        desc: 'Model cards & decision traces with multi-language support'
+    },
+    {
+        icon: 'ph:shield-check',
+        title: 'Harm Mitigation',
+        desc: 'Context-aware toxic output rewriting'
+    },
+    {
+        icon: 'ph:chart-line',
+        title: 'Alignment Dashboard',
+        desc: 'Real-time adherence monitoring with custom KPI thresholds'
     }
 ])
 
-// 对齐标签
-const alignmentTags = ref([
-    { icon: 'carbon:scalability', text: 'Dynamic Re-weighting' },
-    { icon: 'carbon:map', text: 'Explainability Maps' },
-    { icon: 'carbon:settings', text: 'Policy Engine' }
-])
-
-// 合规标准
-const complianceStandards = ref([
+const governItems = ref([
     {
-        name: 'NIST AI RMF',
-        coverage: '98%',
-        color: '#3B82F6',
-        icon: 'carbon:lock'
+        icon: 'carbon:document',
+        title: 'Lifecycle Audit Trails',
+        desc: 'Immutable logs compliant with ISO 42001 and EU AI Act'
     },
     {
-        name: 'GDPR',
-        coverage: '100%',
-        color: '#10B981',
-        icon: 'carbon:data-check'
-    }
-])
-// Security Capabilities
-const securityCapabilities = ref<SecurityCapability[]>([
-    {
-        capability: 'Adversarial Testing',
-        technology: '1000+ attack vectors simulation',
-        impact: '93% Faster Vulnerability Discovery',
-        statusType: 'success'
+        icon: 'carbon:warning-alt',
+        title: 'Drift & Performance Monitoring',
+        desc: 'Real-time alerts for accuracy drops and concept drift'
     },
     {
-        capability: 'Runtime Protection',
-        technology: 'Reinforcement Learning-based detection',
-        impact: '99.99% Threat Block Rate',
-        statusType: 'success'
-    }
-])
-
-// Alignment Process
-const alignmentProcess = ref<AlignmentProcess[]>([
-    {
-        stage: 'Phase 1',
-        title: 'Bias Detection',
-        description: 'Continuous monitoring of 107 fairness metrics',
-        type: 'primary',
-        metric: '0.5ppb Discrimination Rate'
-    },
-    {
-        stage: 'Phase 2',
-        title: 'Value Alignment',
-        description: 'Dynamic parameter balancing with HVE technology',
-        type: 'success',
-        metric: '99.7% Toxicity Filtering'
+        icon: 'carbon:policy',
+        title: 'Regulatory Insight Engine',
+        desc: 'Automated controls mapping for NIST AI RMF and other frameworks'
     }
 ])
 
@@ -999,7 +942,7 @@ $bg-accent: rgba(#34D399, 0.05);
     display: grid;
     gap: 2rem;
     grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    padding: 2rem 0;
+    padding: 3rem 0;
 }
 
 .solution-card {
@@ -1046,9 +989,32 @@ $bg-accent: rgba(#34D399, 0.05);
     h3 {
         font-size: 1.5rem;
         font-weight: 600;
-        margin: 0;
+        margin: 0 0 .5rem;
     }
 
+    .section-subtitle,
+    .solution-subtitle {
+        /* 固定行数 */
+        display: -webkit-box;
+        -webkit-line-clamp: 2;
+        /* 限制两行 */
+        -webkit-box-orient: vertical;
+        overflow: hidden;
+
+        /* 精确高度控制 */
+        line-height: 1.5;
+        /* 根据设计调整 */
+        max-height: calc(2em * 1.5);
+        /* 行高 × 行数 */
+        min-height: calc(2em * 1.5);
+        /* 确保始终占两行高度 */
+
+        /* 视觉优化 */
+        text-overflow: ellipsis;
+        margin:  0;
+        /* 保持间距 */
+        font-size: 1rem;
+    }
 }
 
 .card-desc {
@@ -1209,6 +1175,92 @@ $bg-accent: rgba(#34D399, 0.05);
     .capability-icon :deep(svg) {
         width: 2rem;
         height: 2rem;
+    }
+}
+
+.alignment {
+    background: linear-gradient(135deg, rgba(245, 243, 255, 0.8), rgba(237, 233, 254, 0.9));
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(59, 130, 246, 0.15);
+}
+
+.alignment-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+    margin-top: 2.5rem;
+}
+
+.feature-card {
+    background: white;
+    border-radius: 1rem;
+    padding: 1.5rem;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+
+    &:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 10px 15px rgba(0, 0, 0, 0.1);
+    }
+}
+
+.feature-icon {
+    width: 56px;
+    height: 56px;
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 1.5rem;
+
+    :deep(svg) {
+        width: 28px;
+        height: 28px;
+        color: white;
+    }
+}
+
+.feature-content {
+    h4 {
+        color: #1F2937;
+        font-size: 1.25rem;
+        margin-bottom: 0.75rem;
+    }
+
+    p {
+        color: #6B7280;
+        line-height: 1.6;
+        margin-bottom: 1rem;
+    }
+}
+
+.feature-details {
+    list-style: none;
+    padding: 0;
+    margin-top: 1rem;
+
+    li {
+        display: flex;
+        align-items: center;
+        padding: 0.5rem 0;
+        color: #374151;
+
+        .detail-icon {
+            color: #10B981;
+            margin-right: 0.75rem;
+            font-size: 1.2rem;
+        }
+    }
+}
+
+@media (max-width: 768px) {
+    .alignment-grid {
+        grid-template-columns: 1fr;
+        gap: 1.5rem;
+    }
+
+    .feature-card {
+        padding: 1.25rem;
     }
 }
 </style>
