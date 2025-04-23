@@ -114,7 +114,7 @@
                 <div class="solution-card governance" data-aos="flip-right">
                     <div class="card-header">
                         <icon icon="carbon:document" class="icon" />
-                        <h3>Automated Compliance</h3>
+                        <h3>Governed AI Compliance</h3>
                         <p class="solution-subtitle">Audit-ready controls for global regulations</p>
                     </div>
                     <div class="card-content">
@@ -143,57 +143,50 @@
     <!-- Technology Section -->
     <section class="technology" id="technology">
         <div class="container">
-            <h2 data-aos="fade-up">Core Architecture</h2>
+            <h2 data-aos="fade-up">Trustworthy AI Architecture</h2>
 
-            <!-- Architecture Overview -->
+            <!-- Architecture Pillars -->
             <div class="architecture-grid" data-aos="fade-up">
                 <div class="arch-card" v-for="feature in architectureFeatures" :key="feature.title">
-                    <div class="arch-icon" :style="{ backgroundColor: feature.color }"></div>
+                    <div class="arch-icon" :class="feature.iconClass"></div>
                     <h3>{{ feature.title }}</h3>
-                    <p>{{ feature.description }}</p>
+                    <p class="pillar-description">{{ feature.description }}</p>
                     <ul class="spec-list">
                         <li v-for="(spec, idx) in feature.specs" :key="idx">
                             <el-icon>
                                 <Right />
                             </el-icon>
-                            {{ spec }}
+                            <span class="spec-text">{{ spec }}</span>
                         </li>
                     </ul>
                 </div>
             </div>
 
-            <!-- Technical Specifications -->
+            <!-- Performance Metrics -->
             <div class="specs-grid" data-aos="fade-up">
                 <div class="metric-card" v-for="metric in performanceMetrics" :key="metric.title">
-                    <h3>{{ metric.value }}</h3>
-                    <p>{{ metric.title }}</p>
-                    <div class="metric-bar" :style="{ backgroundColor: metric.color }"></div>
+                    <div class="metric-value">{{ metric.value }}</div>
+                    <p class="metric-title">{{ metric.title }}</p>
+                    <div class="metric-bar" :class="metric.barClass"></div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- 新增客户案例板块 -->
     <section class="clients" id="clients">
         <div class="container">
-            <h2 data-aos="fade-up">Trusted by Global Leaders</h2>
-            <div class="logo-wall" data-aos="fade-up">
-                <img v-for="logo in clientLogos" :key="logo" :src="logo" alt="Client logo">
-            </div>
-            <el-row :gutter="30" class="testimonials">
-                <el-col :md="8" v-for="testimonial in testimonials" :key="testimonial.author" data-aos="fade-up">
-                    <el-card class="quote-card">
-                        <p>"{{ testimonial.text }}"</p>
-                        <div class="author">
-                            <img :src="testimonial.avatar" class="avatar">
-                            <div>
-                                <h4>{{ testimonial.author }}</h4>
-                                <p>{{ testimonial.position }}</p>
-                            </div>
+            <h2 class="section-title">Powering Innovation Across Industries</h2>
+
+            <!-- Logo滚动容器 -->
+            <div class="logo-scroller">
+                <div class="scroller-track">
+                    <div class="logo-group" v-for="group in 2" :key="group">
+                        <div v-for="(client, index) in clients" :key="index" class="logo-item">
+                            <img :src="client.logo" :alt="client.name + ' logo'" class="client-logo" loading="lazy">
                         </div>
-                    </el-card>
-                </el-col>
-            </el-row>
+                    </div>
+                </div>
+            </div>
         </div>
     </section>
 
@@ -279,21 +272,6 @@ interface Pillar {
     description: string
     color: string
 }
-// 新增数据部分
-const clientLogos = [
-    '/images/LogosNvidia.svg',
-    '/images/LogosAws.svg',
-    '/images/LogosMicrosoft.svg'
-]
-
-const testimonials = [
-    {
-        text: 'SecureAI transformed our compliance workflow...',
-        author: 'John Smith',
-        position: 'CTO at TechCorp',
-        avatar: '/images/avatars/avatar1.jpg'
-    }
-]
 
 const securityItems = ref([
     {
@@ -372,41 +350,102 @@ const architecturePillars: Pillar[] = [
     }
 ]
 
-// Technology Features
+// Architecture Features
 const architectureFeatures = [
     {
-        title: 'Multi-Layer Defense',
-        description: 'Three-tier protection architecture',
-        color: '#2A5EE6',
+        title: 'Model Security',
+        iconClass: 'security-icon',
+        description: 'Multi-layered protection from training to inference',
         specs: [
-            '99.2% threat detection rate',
-            '0.008% false positive rate',
-            'Automated attack simulation'
+            "Autonomous offensive testing (LLM-driven attacks)",
+            "Runtime payload inspection <10ms",
+            "Encrypted model weights storage",
+            "Cryptographic data provenance"
         ]
     },
     {
-        title: 'Ethical Engine',
-        description: 'Dynamic value alignment system',
-        color: '#34D399',
+        title: 'Ethical Alignment',
+        iconClass: 'alignment-icon',
+        description: 'Bias mitigation and explainability built-in',
         specs: [
-            '150+ customizable ethics dimensions',
-            'Real-time toxicity filtering',
-            'Decision transparency reports'
+            "Dynamic fairness scoring & re-weighting",
+            "Counterfactual analysis engine",
+            "Toxicity screening & rewriting",
+            "Constitutional AI policy engine"
+        ]
+    },
+    {
+        title: 'Smart Governance',
+        iconClass: 'governance-icon',
+        description: 'Lifecycle compliance automation',
+        specs: [
+            "Automated regulatory mapping (120+ laws)",
+            "Blockchain-backed audit trails",
+            "Real-time concept drift detection",
+            "SOC 2/ISO 42001 ready evidence packs"
         ]
     }
-]
+];
 
 // Performance Metrics
 const performanceMetrics = [
     {
-        title: 'Threat Response Time',
-        value: '<20ms',
-        color: '#FF6B6B'
+        value: "<10ms",
+        title: "Threat Detection Latency",
+        barClass: "security-bar"
     },
     {
-        title: 'Compliance Coverage',
-        value: '98.5%',
-        color: '#4ECDC4'
+        value: "97%",
+        title: "Regulatory Compliance Coverage",
+        barClass: "compliance-bar"
+    },
+    {
+        value: "24/7",
+        title: "Model Monitoring Uptime",
+        barClass: "monitoring-bar"
+    }
+]
+const clients = [
+    // 全球知名企业 
+    {
+        name: 'Microsoft',
+        logo: 'https://www.vectorlogo.zone/logos/microsoft/microsoft-ar21.svg'
+    },
+    {
+        name: 'Google Cloud',
+        logo: 'https://www.vectorlogo.zone/logos/google_cloud/google_cloud-ar21.svg'
+    },
+    {
+        name: 'Amazon Web Services',
+        logo: 'https://www.vectorlogo.zone/logos/amazon_aws/amazon_aws-ar21.svg'
+    },
+
+    // 技术领域领先者
+    {
+        name: 'Docker',
+        logo: 'https://www.vectorlogo.zone/logos/docker/docker-ar21.svg'
+    },
+    {
+        name: 'Kubernetes',
+        logo: 'https://www.vectorlogo.zone/logos/kubernetes/kubernetes-ar21.svg'
+    },
+    {
+        name: 'GitHub',
+        logo: 'https://www.vectorlogo.zone/logos/github/github-ar21.svg'
+    },
+
+    // 新兴技术公司
+    {
+        name: 'Vercel',
+        logo: 'https://www.vectorlogo.zone/logos/vercel/vercel-ar21.svg'
+    },
+    {
+        name: 'Supabase',
+        logo: 'https://www.vectorlogo.zone/logos/supabase/supabase-ar21.svg'
+    },
+    {
+        name: 'Fastly',
+        logo: 'https://www.vectorlogo.zone/logos/fastly/fastly-ar21.svg'
     }
 ]
 </script>
@@ -649,7 +688,7 @@ $hover-bg: rgba($accent, 0.05); // Hover背景
     margin: 0 auto;
     padding: 0 60px;
     position: relative;
-
+    box-sizing: border-box;
     @media (max-width: 1440px) {
         padding: 0 40px;
     }
@@ -678,23 +717,133 @@ $hover-bg: rgba($accent, 0.05); // Hover背景
 }
 
 .clients {
-    padding: 60px 0;
-    background: #f8f9fa;
+    padding: 6rem 0;
+    background: linear-gradient(175deg, #fff 50%, #f8fafc 100%);
+}
 
-    .logo-wall {
-        display: grid;
-        grid-template-columns: repeat(4, 1fr);
-        gap: 40px;
-        margin: 60px 0;
+.client-logo {
+    height: 50px;
+    width: auto;
+    max-width: 160px;
+    object-fit: contain;
+    filter: grayscale(100%);
+    opacity: 0.75;
+    transition: all 0.3s ease;
 
-        img {
-            height: 60px;
-            opacity: 0.7;
-            transition: opacity 0.3s;
+    &:hover {
+        filter: grayscale(0);
+        opacity: 1;
+        transform: scale(1.05);
+    }
+}
 
-            &:hover {
-                opacity: 1;
-            }
+.section-title {
+    text-align: center;
+    font-size: 2rem;
+    color: #1e293b;
+    margin-bottom: 3rem;
+}
+
+.logo-scroller {
+    overflow: hidden;
+    position: relative;
+    padding: 2rem 0;
+
+    // 渐变遮罩
+    &::before,
+    &::after {
+        content: '';
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        width: 15%;
+        z-index: 2;
+        pointer-events: none;
+    }
+
+    &::before {
+        left: 0;
+        background: linear-gradient(90deg, white, rgba(white, 0));
+    }
+
+    &::after {
+        right: 0;
+        background: linear-gradient(90deg, rgba(white, 0), white);
+    }
+}
+
+.scroller-track {
+    display: flex;
+    animation: scroll 35s linear infinite;
+
+    &:hover {
+        animation-play-state: paused;
+    }
+}
+
+.logo-group {
+    display: flex;
+    flex-shrink: 0;
+    padding: 0;
+}
+
+.logo-item {
+    margin: 0 2.5rem;
+    padding: 1rem;
+}
+
+@media (max-width: 768px) {
+    .client-logo {
+        max-width: 120px;
+        height: 40px;
+    }
+
+    .logo-item {
+        margin: 0 1.2rem;
+    }
+}
+
+.client-icon {
+    width: 4.5rem;
+    height: 4.5rem;
+    color: #2A5EE6;
+    margin-bottom: 1rem;
+}
+
+.client-name {
+    color: #475569;
+    font-size: 0.95rem;
+    font-weight: 500;
+    white-space: nowrap;
+}
+
+@keyframes scroll {
+    0% {
+        transform: translateX(0);
+    }
+
+    100% {
+        transform: translateX(-50%);
+    }
+}
+
+@media (max-width: 768px) {
+    .client-icon {
+        width: 3.5rem;
+        height: 3.5rem;
+    }
+
+    .logo-item {
+        margin: 0 1.5rem;
+    }
+
+    @keyframes scroll {
+        0% {
+            transform: translateX(0);
+        }
+
+        100% {
+            transform: translateX(-100%);
         }
     }
 }
@@ -942,7 +1091,7 @@ $bg-accent: rgba(#34D399, 0.05);
     display: grid;
     gap: 2rem;
     grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    padding: 3rem 0;
+    padding: 6rem 0;
 }
 
 .solution-card {
@@ -1011,7 +1160,7 @@ $bg-accent: rgba(#34D399, 0.05);
 
         /* 视觉优化 */
         text-overflow: ellipsis;
-        margin:  0;
+        margin: 0;
         /* 保持间距 */
         font-size: 1rem;
     }
@@ -1168,6 +1317,11 @@ $bg-accent: rgba(#34D399, 0.05);
 
 /* 响应式调整 */
 @media (max-width: 768px) {
+    .solutions{
+        .cards-container {
+            padding: 2rem 0;
+        }
+    }
     .icon {
         font-size: 1.8rem;
     }
@@ -1261,6 +1415,159 @@ $bg-accent: rgba(#34D399, 0.05);
 
     .feature-card {
         padding: 1.25rem;
+    }
+}
+
+// 颜色变量系统
+$colors: (
+    blue-100: #f0f7ff,
+    purple-100: #f5f3ff,
+    teal-100: #f0fdfa,
+    blue-gradient: linear-gradient(135deg, #3b82f6, #6366f1),
+    border-light: #e2e8f0,
+    text-secondary: #64748b,
+    bg-light: #f8f9fa
+);
+
+.technology {
+    padding: 6rem 0;
+
+    @media (max-width: 768px) {
+        padding: 3rem 0;
+    }
+
+    .container {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 0 1.5rem;
+    }
+
+    h2 {
+        font-size: 2.5rem;
+        text-align: center;
+        margin-bottom: 3rem;
+        color: #1a365d;
+
+        @media (max-width: 768px) {
+            font-size: 2rem;
+        }
+    }
+
+    .architecture-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        gap: 2rem;
+        margin-bottom: 4rem;
+
+        .arch-card {
+            background: white;
+            border-radius: 1rem;
+            padding: 2rem;
+            box-shadow: 0 8px 32px rgba(31, 38, 135, 0.05);
+            transition: transform 0.3s ease;
+
+            &:hover {
+                transform: translateY(-5px);
+            }
+
+            .arch-icon {
+                width: 3.5rem;
+                height: 3.5rem;
+                border-radius: 0.75rem;
+                margin-bottom: 1.5rem;
+
+                &.security-icon {
+                    background-color: map-get($colors, blue-100);
+                }
+
+                &.alignment-icon {
+                    background-color: map-get($colors, purple-100);
+                }
+
+                &.governance-icon {
+                    background-color: map-get($colors, teal-100);
+                }
+            }
+
+            h3 {
+                font-size: 1.5rem;
+                margin-bottom: 1rem;
+                color: #1e293b;
+            }
+
+            .pillar-description {
+                color: map-get($colors, text-secondary);
+                margin: 1rem 0 1.5rem;
+                min-height: 3.5rem;
+                line-height: 1.6;
+            }
+
+            .spec-list {
+                li {
+                    display: flex;
+                    align-items: start;
+                    gap: 0.5rem;
+                    padding: 0.7rem 0;
+                    border-top: 1px solid map-get($colors, border-light);
+
+                    .el-icon {
+                        color: #4f46e5;
+                        margin-top: 0.2rem;
+                    }
+
+                    .spec-text {
+                        flex: 1;
+                        color: #475569;
+                    }
+                }
+            }
+        }
+    }
+
+    .specs-grid {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 2rem;
+
+        @media (max-width: 768px) {
+            grid-template-columns: 1fr;
+        }
+
+        .metric-card {
+            background: white;
+            padding: 1.5rem;
+            border-radius: 1rem;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+
+            .metric-value {
+                font-size: 2.5rem;
+                font-weight: 600;
+                color: #1e3a8a;
+                margin-bottom: 0.5rem;
+            }
+
+            .metric-title {
+                color: map-get($colors, text-secondary);
+                margin-bottom: 1rem;
+            }
+
+            .metric-bar {
+                height: 6px;
+                border-radius: 3px;
+
+                &.security-bar {
+                    background: map-get($colors, blue-gradient);
+                }
+
+                &.compliance-bar {
+                    background: linear-gradient(135deg, #8b5cf6, #a855f7);
+                }
+
+                &.monitoring-bar {
+                    background: linear-gradient(135deg, #059669, #10b981);
+                }
+            }
+        }
     }
 }
 </style>
