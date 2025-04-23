@@ -4,7 +4,7 @@
         <div class="container">
             <!-- 独立 Logo -->
             <router-link to="/" class="brand-logo">
-                <img src="@/assets/logo.svg" alt="SecureAI">
+                <img src="@/assets/logos/logo.png" alt="SecureAI">
             </router-link>
             <!-- 主导航菜单 -->
             <el-menu mode="horizontal" :ellipsis="isMobile" class="main-nav" @select="handleNavSelect">
@@ -194,13 +194,7 @@
     <footer class="global-footer">
         <div class="container">
             <el-row :gutter="30">
-                <el-col :md="6">
-                    <div class="footer-brand">
-                        <img src="@/assets/logo.svg" class="footer-logo">
-                        <p>Building Trustworthy AI Since 2020</p>
-                    </div>
-                </el-col>
-                <el-col :md="6">
+                <el-col :md="8">
                     <h4>Product</h4>
                     <ul class="footer-links">
                         <li><a href="#solutions">Solutions</a></li>
@@ -208,7 +202,7 @@
                         <li><a href="#clients">Customers</a></li>
                     </ul>
                 </el-col>
-                <el-col :md="6">
+                <el-col :md="8">
                     <h4>Resources</h4>
                     <ul class="footer-links">
                         <li><a href="#blog">Blog</a></li>
@@ -216,20 +210,20 @@
                         <li><a href="#compliance">Compliance</a></li>
                     </ul>
                 </el-col>
-                <el-col :md="6">
+                <el-col :md="8">
                     <h4>Contact</h4>
                     <p>sales@secureai.com
                         +1 (800) 123-4567</p>
                     <div class="social-links">
-                        <el-button circle><el-icon>
-                                <Link />
-                            </el-icon></el-button>
-                        <el-button circle><el-icon>
-                                <Chat />
-                            </el-icon></el-button>
-                        <el-button circle><el-icon>
-                                <Star />
-                            </el-icon></el-button>
+                        <el-button circle class="social-btn">
+                            <Icon icon="mdi:twitter" :inline="true" />
+                        </el-button>
+                        <el-button circle class="social-btn">
+                            <Icon icon="mdi:linkedin" :inline="true" />
+                        </el-button>
+                        <el-button circle class="social-btn">
+                            <Icon icon="mdi:github" :inline="true" />
+                        </el-button>
                     </div>
                 </el-col>
             </el-row>
@@ -451,19 +445,15 @@ const clients = [
 </script>
 
 <style lang="scss" scoped>
-// 主题色系统
-$primary: #1A3A6B; // 深海蓝 - 象征信任与安全
-$accent: #34D399; // 智能绿 - 代表成长与透明
-$alert: #FF6B6B; // 珊瑚红 - 用于安全警示
-$dark: #0D1F2D; // 深空蓝 - 替代纯黑
-$light: #F8FAFC; // 冰川白 - 主背景色
-$neutral: #E5E9F0; // 北极灰 - 辅助背景
-// 在样式变量中定义颜色方案
+// 颜色方案
 $text-dark: #1A1A1A; // 主文本色
 $primary: #2A5EE6; // 品牌主色
 $accent: #34D399; // 强调色
 $hover-bg: rgba($accent, 0.05); // Hover背景
-
+$alert: #FF6B6B; // 珊瑚红 - 用于安全警示
+$dark: #0D1F2D; // 深空蓝 - 替代纯黑
+$light: #F8FAFC; // 冰川白 - 主背景色
+$neutral: #E5E9F0; // 北极灰 - 辅助背景
 
 
 .global-header {
@@ -689,6 +679,7 @@ $hover-bg: rgba($accent, 0.05); // Hover背景
     padding: 0 60px;
     position: relative;
     box-sizing: border-box;
+
     @media (max-width: 1440px) {
         padding: 0 40px;
     }
@@ -718,7 +709,6 @@ $hover-bg: rgba($accent, 0.05); // Hover背景
 
 .clients {
     padding: 6rem 0;
-    background: linear-gradient(175deg, #fff 50%, #f8fafc 100%);
 }
 
 .client-logo {
@@ -763,12 +753,10 @@ $hover-bg: rgba($accent, 0.05); // Hover背景
 
     &::before {
         left: 0;
-        background: linear-gradient(90deg, white, rgba(white, 0));
     }
 
     &::after {
         right: 0;
-        background: linear-gradient(90deg, rgba(white, 0), white);
     }
 }
 
@@ -878,9 +866,22 @@ $hover-bg: rgba($accent, 0.05); // Hover背景
 
     .social-links {
         margin-top: 20px;
+        display: flex;
+        gap: 12px;
+    }
 
-        .el-button {
-            margin-right: 10px;
+    .social-btn {
+        transition: all 0.3s ease;
+
+        :deep(.iconify) {
+            width: 20px;
+            height: 20px;
+            color: currentColor;
+        }
+
+        &:hover {
+            background-color: var(--primary-hover);
+            transform: translateY(-2px);
         }
     }
 
@@ -1317,11 +1318,12 @@ $bg-accent: rgba(#34D399, 0.05);
 
 /* 响应式调整 */
 @media (max-width: 768px) {
-    .solutions{
+    .solutions {
         .cards-container {
             padding: 2rem 0;
         }
     }
+
     .icon {
         font-size: 1.8rem;
     }
@@ -1567,6 +1569,60 @@ $colors: (
                     background: linear-gradient(135deg, #059669, #10b981);
                 }
             }
+        }
+    }
+}
+
+// 全局背景色交替系统
+$bg-sequence: (
+    solutions: $light,
+    technology: $neutral,
+    clients: $light,
+);
+
+// 自动应用背景色
+@each $section, $color in $bg-sequence {
+    .#{$section} {
+        background: $color;
+
+        // 自动计算文本对比色
+        $text-color: if(lightness($color) > 50%, #1a1a1a, white);
+        color: $text-color;
+
+        // 子组件颜色调整
+        .section-title,
+        .card-header h3 {
+            color: $text-color;
+        }
+
+        // 边界分隔处理
+        &+section {
+            border-top: 1px solid rgba($text-color, 0.1);
+        }
+    }
+}
+
+// 特定板块微调
+.solutions {
+    .solution-card {
+        background: rgba(white, 0.95);
+        border: 1px solid rgba($primary, 0.1);
+    }
+}
+
+.technology {
+    .arch-card {
+        background: rgba(black, 0.2);
+        border-color: rgba(white, 0.15);
+    }
+}
+
+.clients {
+    .client-logo {
+        filter: invert(1) grayscale(1);
+
+        &:hover {
+            filter: none;
         }
     }
 }
