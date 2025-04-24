@@ -1,26 +1,106 @@
 <template>
-    <!-- Professional Header -->
-    <nav class="global-header">
+    <!-- PC Navigation -->
+    <nav class="global-header pc-nav" v-if="!isMobile">
         <div class="container">
-            <!-- 独立 Logo -->
             <router-link to="/" class="brand-logo">
-                <img src="@/assets/logos/logo.png" alt="SecureAI">
+                <img src="@/assets/logos/logo.png" alt="AIConforms" class="logo-img">
             </router-link>
-            <!-- 主导航菜单 -->
-            <el-menu mode="horizontal" :ellipsis="isMobile" class="main-nav" @select="handleNavSelect">
-                <el-menu-item index="solutions">Solutions</el-menu-item>
-                <el-menu-item index="technology">Technology</el-menu-item>
+
+            <el-menu mode="horizontal" class="main-nav" :ellipsis="false" @select="handleNavSelect">
+                <!-- Products Dropdown -->
+                <el-sub-menu index="products">
+                    <template #title>
+                        <span class="nav-menu-title">Products</span>
+                    </template>
+                    <el-menu-item index="products/ai-form">
+                        <a href="https://qa.aiconforms.com" target="_blank" rel="noopener noreferrer"
+                            class="external-link">AI Form
+                            Filler</a>
+                    </el-menu-item>
+                    <el-menu-item index="products/compliance">
+                        <a href="https://act.aiconforms.com" target="_blank" rel="noopener noreferrer"
+                            class="external-link">EU AI ACT</a>
+                    </el-menu-item>
+                </el-sub-menu>
+
+                <el-menu-item index="solutions">
+                    <span class="nav-menu-title">Solutions</span>
+                </el-menu-item>
+
+                <el-menu-item index="technology">
+                    <span class="nav-menu-title">Technology</span>
+                </el-menu-item>
+
                 <el-sub-menu index="resources">
-                    <template #title>Resources</template>
+                    <template #title>
+                        <span class="nav-menu-title">Resources</span>
+                    </template>
                     <el-menu-item index="docs">Documentation</el-menu-item>
                     <el-menu-item index="casestudies">Case Studies</el-menu-item>
                 </el-sub-menu>
             </el-menu>
-            <!-- 独立操作项 -->
+
             <div class="nav-actions">
                 <el-button class="link-btn" link type="primary">Contact Sales</el-button>
                 <el-button type="primary" class="demo-btn">Get Demo</el-button>
             </div>
+        </div>
+    </nav>
+    <!-- Mobile Navigation -->
+    <nav class="global-header mobile-nav" v-else>
+        <div class="container">
+            <router-link to="/" class="brand-logo">
+                <img src="@/assets/logos/logo.png" alt="AIConforms" class="logo-img">
+            </router-link>
+
+            <el-dropdown trigger="click" class="mobile-menu">
+                <el-button class="menu-trigger">
+                    <Icon icon="heroicons-outline:menu-alt-3" class="menu-icon" />
+                </el-button>
+                <template #dropdown>
+                    <div class="mobile-dropdown">
+                        <el-menu mode="vertical" class="main-nav" @select="handleNavSelect">
+                            <!-- Products Dropdown -->
+                            <el-sub-menu index="products">
+                                <template #title>
+                                    <span class="nav-menu-title">Products</span>
+                                </template>
+                                <el-menu-item index="products/ai-form">
+                                    <a href="https://qa.aiconforms.com" target="_blank" rel="noopener noreferrer"
+                                        class="external-link">AI
+                                        Form
+                                        Filler</a>
+                                </el-menu-item>
+                                <el-menu-item index="products/compliance">
+                                    <a href="https://act.aiconforms.com" target="_blank" rel="noopener noreferrer"
+                                        class="external-link">EU
+                                        AI ACT</a>
+                                </el-menu-item>
+                            </el-sub-menu>
+
+                            <el-menu-item index="solutions">
+                                <span class="nav-menu-title">Solutions</span>
+                            </el-menu-item>
+
+                            <el-menu-item index="technology">
+                                <span class="nav-menu-title">Technology</span>
+                            </el-menu-item>
+
+                            <el-sub-menu index="resources">
+                                <template #title>
+                                    <span class="nav-menu-title">Resources</span>
+                                </template>
+                                <el-menu-item index="docs">Documentation</el-menu-item>
+                                <el-menu-item index="casestudies">Case Studies</el-menu-item>
+                            </el-sub-menu>
+                        </el-menu>
+                        <div class="mobile-actions">
+                            <el-button class="link-btn" link type="primary">Contact Sales</el-button>
+                            <el-button type="primary" class="demo-btn">Get Demo</el-button>
+                        </div>
+                    </div>
+                </template>
+            </el-dropdown>
         </div>
     </nav>
     <!-- Hero Section -->
@@ -289,7 +369,7 @@
                 </el-col>
                 <el-col :md="8">
                     <h4>Contact</h4>
-                    <p>sales@secureai.com
+                    <p>sales@aiconforms.com
                         +1 (800) 123-4567</p>
                     <div class="social-links">
                         <el-button circle class="social-btn">
@@ -319,7 +399,7 @@ const isMobile = ref(false)
 
 // 响应式检测
 const checkViewport = () => {
-    isMobile.value = window.innerWidth < 992
+    isMobile.value = window.innerWidth < 768
 }
 
 onMounted(() => {
@@ -575,7 +655,7 @@ $neutral: #E5E9F0; // 北极灰 - 辅助背景
     position: fixed;
     top: 0;
     width: 100%;
-    background: rgba(255, 255, 255, 0.98);
+    background: $light;
     backdrop-filter: blur(10px);
     z-index: 1000;
     box-shadow: 0 2px 15px rgba(0, 0, 0, 0.1);
@@ -599,6 +679,10 @@ $neutral: #E5E9F0; // 北极灰 - 辅助背景
         border-bottom: none;
         align-items: center;
         background-color: transparent;
+
+        .el-sub-menu {
+            height: 100%;
+        }
 
         :deep(.el-menu-item),
         :deep(.el-sub-menu__title) {
@@ -631,11 +715,89 @@ $neutral: #E5E9F0; // 北极灰 - 辅助背景
     }
 }
 
-@media (max-width: 992px) {
+/* Mobile Navigation Styles */
+.mobile-nav {
+    .mobile-menu {
+        margin-left: auto;
+        .menu-trigger {
+            padding: 8px;
+            border: none;
+            background: transparent;
+
+            .menu-icon {
+                font-size: 24px;
+                color: $text-dark;
+                transition: transform 0.3s ease;
+            }
+
+            &:hover .menu-icon {
+                color: $primary;
+            }
+        }
+    }
+}
+
+.mobile-dropdown {
+    width: 280px;
+    padding: 12px 0;
+    background-color: $light;
+    .el-dropdown-menu__item {
+        padding: 12px 24px;
+        font-size: 15px;
+
+        a {
+            color: $text-dark;
+            text-decoration: none;
+            display: block;
+            width: 100%;
+        }
+    }
+    :deep(.el-menu){
+        background-color: transparent;
+    }
+    .mobile-actions {
+        padding: 16px 24px;
+        border-top: 1px solid #eee;
+        display: flex;
+        flex-direction: column;
+        gap: 12px;
+
+        .demo-btn {
+            width: 100%;
+        }
+    }
+}
+
+@media (max-width: 768px) {
+    .pc-nav {
+        display: none;
+    }
+
+    .mobile-nav .container {
+        padding: 0 16px;
+    }
+}
+
+@media (min-width: 769px) {
+    .mobile-nav {
+        display: none;
+    }
+}
+
+.external-link {
+    color: $text-dark;
+    text-decoration: none;
+
+    &:hover {
+        color: $primary;
+    }
+}
+
+@media (max-width: 768px) {
     .global-header {
         .container {
             height: 60px;
-            padding: 0 24px;
+            padding: 0 1rem;
         }
 
         .brand-logo img {
@@ -1251,7 +1413,7 @@ $bg-accent: rgba(#34D399, 0.05);
             }
 
             .download-btn {
-                margin-top: 0;
+                margin-top: 1.25rem;
                 padding: 1.25rem 32px;
                 font-size: 1.1rem;
                 background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
@@ -1694,7 +1856,6 @@ $bg-accent: rgba(#34D399, 0.05);
     display: flex;
     align-items: center;
     justify-content: center;
-    margin-bottom: 1.5rem;
 
     :deep(svg) {
         width: 28px;
