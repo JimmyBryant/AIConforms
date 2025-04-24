@@ -500,43 +500,6 @@ const architecturePillars: Pillar[] = [
     }
 ]
 
-// Architecture Features
-const architectureFeatures = [
-    {
-        title: 'Model Security',
-        iconClass: 'security-icon',
-        description: 'Multi-layered protection from training to inference',
-        specs: [
-            "Autonomous offensive testing (LLM-driven attacks)",
-            "Runtime payload inspection <10ms",
-            "Encrypted model weights storage",
-            "Cryptographic data provenance"
-        ]
-    },
-    {
-        title: 'Ethical Alignment',
-        iconClass: 'alignment-icon',
-        description: 'Bias mitigation and explainability built-in',
-        specs: [
-            "Dynamic fairness scoring & re-weighting",
-            "Counterfactual analysis engine",
-            "Toxicity screening & rewriting",
-            "Constitutional AI policy engine"
-        ]
-    },
-    {
-        title: 'Smart Governance',
-        iconClass: 'governance-icon',
-        description: 'Lifecycle compliance automation',
-        specs: [
-            "Automated regulatory mapping (120+ laws)",
-            "Blockchain-backed audit trails",
-            "Real-time concept drift detection",
-            "SOC 2/ISO 42001 ready evidence packs"
-        ]
-    }
-];
-
 interface MitreInfo {
     id: string
     title: string
@@ -639,6 +602,8 @@ const clients = [
 </script>
 
 <style lang="scss" scoped>
+@use "sass:map"; // 在文件顶部添加模块引用
+@use "sass:color"; // 在文件顶部添加模块引用
 // 颜色方案
 $primary: #2A5EE6; // 品牌主色
 $secondary: #6A2AE6; // 紫色（色环邻近色）
@@ -649,13 +614,17 @@ $alert: #FF6B6B; // 珊瑚红 - 用于安全警示
 $dark: #0D1F2D; // 深空蓝 - 替代纯黑
 $light: #F8FAFC; // 冰川白 - 主背景色
 $neutral: #E5E9F0; // 北极灰 - 辅助背景
-
+// 新增背景色变量
+$bg-light: #F8FAFC;
+$bg-dark: #1A1A1A;
+$bg-gray: #F0F4F8;
+$bg-accent: rgba(#34D399, 0.05);
 
 .global-header {
     position: fixed;
     top: 0;
     width: 100%;
-    background: $light;
+    background: $bg-light;
     backdrop-filter: blur(10px);
     z-index: 1000;
     box-shadow: 0 2px 15px rgba(0, 0, 0, 0.1);
@@ -740,7 +709,7 @@ $neutral: #E5E9F0; // 北极灰 - 辅助背景
 .mobile-dropdown {
     width: 280px;
     padding: 12px 0;
-    background-color: $light;
+    background-color: $bg-light;
     .el-dropdown-menu__item {
         padding: 12px 24px;
         font-size: 15px;
@@ -1180,15 +1149,9 @@ $neutral: #E5E9F0; // 北极灰 - 辅助背景
     }
 }
 
-// 新增背景色变量
-$bg-light: #F8FAFC;
-$bg-dark: #1A1A1A;
-$bg-gray: #F0F4F8;
-$bg-accent: rgba(#34D399, 0.05);
-
 // 板块背景色调整
 .hero {
-    background: linear-gradient(135deg, $dark 0%, lighten($dark, 8%) 100%);
+    background: linear-gradient(135deg, $dark 0%, color.adjust($dark, $lightness: 8%) 100%);
 }
 
 .solutions {
@@ -1240,7 +1203,7 @@ $bg-accent: rgba(#34D399, 0.05);
                 position: absolute;
                 top: -20px;
                 right: -30px;
-                background: darken($secondary, 10%);
+                background: color.adjust($secondary, $lightness: -10%);
                 color: white;
                 padding: 4px 12px;
                 border-radius: 20px;
@@ -1967,15 +1930,15 @@ $colors: (
                 margin-bottom: 1.5rem;
 
                 &.security-icon {
-                    background-color: map-get($colors, blue-100);
+                    background-color: map.get($colors, blue-100);
                 }
 
                 &.alignment-icon {
-                    background-color: map-get($colors, purple-100);
+                    background-color: map.get($colors, purple-100);
                 }
 
                 &.governance-icon {
-                    background-color: map-get($colors, teal-100);
+                    background-color: map.get($colors, teal-100);
                 }
             }
 
@@ -1986,7 +1949,7 @@ $colors: (
             }
 
             .pillar-description {
-                color: map-get($colors, text-secondary);
+                color: map.get($colors, text-secondary);
                 margin: 1rem 0 1.5rem;
                 min-height: 3.5rem;
                 line-height: 1.6;
@@ -1998,7 +1961,7 @@ $colors: (
                     align-items: start;
                     gap: 0.5rem;
                     padding: 0.7rem 0;
-                    border-top: 1px solid map-get($colors, border-light);
+                    border-top: 1px solid map.get($colors, border-light);
 
                     .el-icon {
                         color: #4f46e5;
@@ -2037,7 +2000,7 @@ $colors: (
             }
 
             .metric-title {
-                color: map-get($colors, text-secondary);
+                color: map.get($colors, text-secondary);
                 margin-bottom: 1rem;
             }
 
@@ -2046,7 +2009,7 @@ $colors: (
                 border-radius: 3px;
 
                 &.security-bar {
-                    background: map-get($colors, blue-gradient);
+                    background: map.get($colors, blue-gradient);
                 }
 
                 &.compliance-bar {
@@ -2074,7 +2037,7 @@ $bg-sequence: (
         background: $color;
 
         // 自动计算文本对比色
-        $text-color: if(lightness($color) > 50%, #1a1a1a, white);
+        $text-color: if(color.channel($color, "lightness", $space: hsl) > 50%, #1a1a1a, white);
         color: $text-color;
 
         // 子组件颜色调整
